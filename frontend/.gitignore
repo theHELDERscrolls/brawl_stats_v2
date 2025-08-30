@@ -1,4 +1,6 @@
+# ───────────────────────────────
 # Logs
+# ───────────────────────────────
 logs
 *.log
 npm-debug.log*
@@ -7,18 +9,80 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+# ───────────────────────────────
+# Runtime data
+# ───────────────────────────────
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ───────────────────────────────
+# Dependencies
+# ───────────────────────────────
+node_modules/
+
+# ───────────────────────────────
+# Build output
+# ───────────────────────────────
+dist/
+dist-ssr/
+build/
 *.local
 
-# Editor directories and files
+# ───────────────────────────────
+# TypeScript
+# ───────────────────────────────
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# ───────────────────────────────
+# Testing
+# ───────────────────────────────
+coverage/
+*.lcov
+.nyc_output/
+
+# ───────────────────────────────
+# Env files
+# (mantén .env.example en repo)
+# ───────────────────────────────
+.env
+.env.*.local
+
+# ───────────────────────────────
+# IDEs & Editors
+# ───────────────────────────────
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
+!.vscode/settings.json
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.iml
+
+# ───────────────────────────────
+# OS generated
+# ───────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ───────────────────────────────
+# Misc
+# ───────────────────────────────
+*.tgz
+*.zip
+*.tar.gz
+
+# ───────────────────────────────
+# Optional caches
+# ───────────────────────────────
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+vite.config.ts.timestamp-*
+.vercel
