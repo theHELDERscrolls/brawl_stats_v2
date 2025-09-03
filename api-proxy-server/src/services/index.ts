@@ -1,1 +1,1 @@
-export * from "./brawlApi.js";
+export * from "./brawlstars.api.js";

@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import { IconsSchema, type BrawlApiError, type Icons } from "../types";
 
 const ICONS_ENDPOINT = "/icons";
@@ -9,7 +9,7 @@ export class IconService {
 
   static async getIcons(): Promise<Icons | undefined> {
     try {
-      const response = await this.api.get<Icons>(`${BASE_URL}${ICONS_ENDPOINT}`);
+      const response = await this.api.get<Icons>(`${BRAWLAPI_BASE_URL}${ICONS_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;

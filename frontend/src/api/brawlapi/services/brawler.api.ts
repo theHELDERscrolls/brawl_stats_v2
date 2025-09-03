@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import {
   BrawlerDetailSchema,
   BrawlersSchema,
@@ -15,7 +15,7 @@ export class BrawlerService {
 
   static async getAllBrawlers(): Promise<Brawlers | undefined> {
     try {
-      const response = await this.api.get<Brawlers>(`${BASE_URL}${BRAWLERS_ENDPOINT}`);
+      const response = await this.api.get<Brawlers>(`${BRAWLAPI_BASE_URL}${BRAWLERS_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;
@@ -49,7 +49,7 @@ export class BrawlerService {
 
   static async getBrawlerById(id: number): Promise<BrawlerDetail | undefined> {
     try {
-      const response = await this.api.get<BrawlerDetail>(`${BASE_URL}${BRAWLERS_ENDPOINT}/${id}`);
+      const response = await this.api.get<BrawlerDetail>(`${BRAWLAPI_BASE_URL}${BRAWLERS_ENDPOINT}/${id}`);
       if (!response.data) {
         return undefined;
       }

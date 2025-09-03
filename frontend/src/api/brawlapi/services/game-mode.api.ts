@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import {
   GameModeSchema,
   GameModesSchema,
@@ -15,7 +15,7 @@ export class GameModeService {
 
   static async getAllGameModes(): Promise<GameModes | undefined> {
     try {
-      const response = await this.api.get<GameModes>(`${BASE_URL}${GAMEMODES_ENDPOINT}`);
+      const response = await this.api.get<GameModes>(`${BRAWLAPI_BASE_URL}${GAMEMODES_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;
@@ -49,7 +49,7 @@ export class GameModeService {
 
   static async getGameModeById(id: number): Promise<GameMode | undefined> {
     try {
-      const response = await this.api.get<GameMode>(`${BASE_URL}${GAMEMODES_ENDPOINT}/${id}`);
+      const response = await this.api.get<GameMode>(`${BRAWLAPI_BASE_URL}${GAMEMODES_ENDPOINT}/${id}`);
       if (!response.data) {
         return undefined;
       }

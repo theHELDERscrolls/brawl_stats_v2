@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import { EventsSchema, type BrawlApiError, type Events } from "../types";
 
 const EVENTS_ENDPOINT = "/events";
@@ -9,7 +9,7 @@ export class EventService {
 
   static async getEvents(): Promise<Events | undefined> {
     try {
-      const response = await this.api.get<Events>(`${BASE_URL}${EVENTS_ENDPOINT}`);
+      const response = await this.api.get<Events>(`${BRAWLAPI_BASE_URL}${EVENTS_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;

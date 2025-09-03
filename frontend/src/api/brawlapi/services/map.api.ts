@@ -1,5 +1,5 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import {
   MapDetailSchema,
   MapsSchema,
@@ -15,7 +15,7 @@ export class MapService {
 
   static async getAllMaps(): Promise<Maps | undefined> {
     try {
-      const response = await this.api.get<Maps>(`${BASE_URL}${MAPS_ENDPOINT}`);
+      const response = await this.api.get<Maps>(`${BRAWLAPI_BASE_URL}${MAPS_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;
@@ -49,7 +49,7 @@ export class MapService {
 
   static async getMapById(id: number): Promise<MapDetail | undefined> {
     try {
-      const response = await this.api.get<MapDetail>(`${BASE_URL}${MAPS_ENDPOINT}/${id}`);
+      const response = await this.api.get<MapDetail>(`${BRAWLAPI_BASE_URL}${MAPS_ENDPOINT}/${id}`);
       if (!response.data) {
         return undefined;
       }
