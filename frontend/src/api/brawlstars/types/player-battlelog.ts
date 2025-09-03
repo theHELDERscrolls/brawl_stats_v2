@@ -4,10 +4,10 @@ import { PagingSchema } from "./shared.js";
 export const ModeSchema = z.string();
 export type Mode = z.infer<typeof ModeSchema>;
 
-export const ResultSchema = z.enum(["defeat", "victory"]);
+export const ResultSchema = z.string();
 export type Result = z.infer<typeof ResultSchema>;
 
-export const TypeSchema = z.enum(["ranked"]);
+export const TypeSchema = z.string();
 export type Type = z.infer<typeof TypeSchema>;
 
 export const BattlelogMapSchema = z.string();

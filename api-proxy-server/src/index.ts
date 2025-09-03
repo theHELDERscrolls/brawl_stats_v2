@@ -8,7 +8,15 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-app.use(cors());
+// Limitamos el uso en desarrollo
+app.use(cors({ origin: "http://localhost:5173" }));
+
+// IMPORTANTE EN PRODUCCIÓN
+// app.use(cors({
+//   origin: "https://mi-front.com",
+//   methods: ["GET", "POST"], // solo los métodos que uses
+//   allowedHeaders: ["Content-Type", "Authorization"], // si necesitas headers personalizados
+// }));
 app.use(express.json());
 
 app.use("/players", playersRouter);

@@ -1,1 +1,1 @@
-export * from "./brawlApiClient";
+export * from "./brawl-api-client";
