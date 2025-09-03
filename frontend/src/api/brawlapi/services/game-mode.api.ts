@@ -1,21 +1,21 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import {
-  BrawlerDetailSchema,
-  BrawlersSchema,
+  GameModeSchema,
+  GameModesSchema,
   type BrawlApiError,
-  type BrawlerDetail,
-  type Brawlers,
+  type GameMode,
+  type GameModes,
 } from "../types";
 
-const BRAWLERS_ENDPOINT = "/brawlers";
+const GAMEMODES_ENDPOINT = "/gamemodes";
 
-export class BrawlerService {
+export class GameModeService {
   private static api = new BrawlApiAxiosInterceptor().instance;
 
-  static async getAllBrawlers(): Promise<Brawlers | undefined> {
+  static async getAllGameModes(): Promise<GameModes | undefined> {
     try {
-      const response = await this.api.get<Brawlers>(`${BASE_URL}${BRAWLERS_ENDPOINT}`);
+      const response = await this.api.get<GameModes>(`${BRAWLAPI_BASE_URL}${GAMEMODES_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;
@@ -29,7 +29,7 @@ export class BrawlerService {
         throw new Error("Not found - endpoint may not exist");
       }
 
-      const parsedData = BrawlersSchema.parse(response.data);
+      const parsedData = GameModesSchema.parse(response.data);
 
       return parsedData;
     } catch (error) {
@@ -47,9 +47,9 @@ export class BrawlerService {
     }
   }
 
-  static async getBrawlerById(id: number): Promise<BrawlerDetail | undefined> {
+  static async getGameModeById(id: number): Promise<GameMode | undefined> {
     try {
-      const response = await this.api.get<BrawlerDetail>(`${BASE_URL}${BRAWLERS_ENDPOINT}/${id}`);
+      const response = await this.api.get<GameMode>(`${BRAWLAPI_BASE_URL}${GAMEMODES_ENDPOINT}/${id}`);
       if (!response.data) {
         return undefined;
       }
@@ -62,7 +62,7 @@ export class BrawlerService {
         throw new Error("Not found - endpoint may not exist");
       }
 
-      const parsedData = BrawlerDetailSchema.parse(response.data);
+      const parsedData = GameModeSchema.parse(response.data);
 
       return parsedData;
     } catch (error) {

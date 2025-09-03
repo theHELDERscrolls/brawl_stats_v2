@@ -1,21 +1,21 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import {
-  GameModeSchema,
-  GameModesSchema,
+  MapDetailSchema,
+  MapsSchema,
   type BrawlApiError,
-  type GameMode,
-  type GameModes,
+  type MapDetail,
+  type Maps,
 } from "../types";
 
-const GAMEMODES_ENDPOINT = "/gamemodes";
+const MAPS_ENDPOINT = "/maps";
 
-export class GameModeService {
+export class MapService {
   private static api = new BrawlApiAxiosInterceptor().instance;
 
-  static async getAllGameModes(): Promise<GameModes | undefined> {
+  static async getAllMaps(): Promise<Maps | undefined> {
     try {
-      const response = await this.api.get<GameModes>(`${BASE_URL}${GAMEMODES_ENDPOINT}`);
+      const response = await this.api.get<Maps>(`${BRAWLAPI_BASE_URL}${MAPS_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;
@@ -29,7 +29,7 @@ export class GameModeService {
         throw new Error("Not found - endpoint may not exist");
       }
 
-      const parsedData = GameModesSchema.parse(response.data);
+      const parsedData = MapsSchema.parse(response.data);
 
       return parsedData;
     } catch (error) {
@@ -47,9 +47,9 @@ export class GameModeService {
     }
   }
 
-  static async getGameModeById(id: number): Promise<GameMode | undefined> {
+  static async getMapById(id: number): Promise<MapDetail | undefined> {
     try {
-      const response = await this.api.get<GameMode>(`${BASE_URL}${GAMEMODES_ENDPOINT}/${id}`);
+      const response = await this.api.get<MapDetail>(`${BRAWLAPI_BASE_URL}${MAPS_ENDPOINT}/${id}`);
       if (!response.data) {
         return undefined;
       }
@@ -62,7 +62,7 @@ export class GameModeService {
         throw new Error("Not found - endpoint may not exist");
       }
 
-      const parsedData = GameModeSchema.parse(response.data);
+      const parsedData = MapDetailSchema.parse(response.data);
 
       return parsedData;
     } catch (error) {

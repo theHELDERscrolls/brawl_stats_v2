@@ -4,14 +4,14 @@ import { PagingSchema } from "./shared.js";
 export const ModeSchema = z.string();
 export type Mode = z.infer<typeof ModeSchema>;
 
-export const ResultSchema = z.enum(["defeat", "victory"]);
+export const ResultSchema = z.string();
 export type Result = z.infer<typeof ResultSchema>;
 
-export const TypeSchema = z.enum(["ranked"]);
+export const TypeSchema = z.string();
 export type Type = z.infer<typeof TypeSchema>;
 
-export const MapSchema = z.string();
-export type Map = z.infer<typeof MapSchema>;
+export const BattlelogMapSchema = z.string();
+export type BattlelogMap = z.infer<typeof BattlelogMapSchema>;
 
 export const PlayerBrawlerSchema = z.object({
   id: z.number(),
@@ -32,7 +32,7 @@ export type StarPlayer = z.infer<typeof StarPlayerSchema>;
 export const EventSchema = z.object({
   id: z.number(),
   mode: ModeSchema,
-  map: MapSchema,
+  map: BattlelogMapSchema,
 });
 export type Event = z.infer<typeof EventSchema>;
 

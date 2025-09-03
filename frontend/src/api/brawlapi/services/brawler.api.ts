@@ -1,21 +1,21 @@
 import { AxiosError } from "axios";
-import { BASE_URL, BrawlApiAxiosInterceptor } from "../client";
+import { BRAWLAPI_BASE_URL, BrawlApiAxiosInterceptor } from "../client";
 import {
-  MapDetailSchema,
-  MapsSchema,
+  BrawlerDetailSchema,
+  BrawlersSchema,
   type BrawlApiError,
-  type MapDetail,
-  type Maps,
+  type BrawlerDetail,
+  type Brawlers,
 } from "../types";
 
-const MAPS_ENDPOINT = "/maps";
+const BRAWLERS_ENDPOINT = "/brawlers";
 
-export class MapService {
+export class BrawlerService {
   private static api = new BrawlApiAxiosInterceptor().instance;
 
-  static async getAllMaps(): Promise<Maps | undefined> {
+  static async getAllBrawlers(): Promise<Brawlers | undefined> {
     try {
-      const response = await this.api.get<Maps>(`${BASE_URL}${MAPS_ENDPOINT}`);
+      const response = await this.api.get<Brawlers>(`${BRAWLAPI_BASE_URL}${BRAWLERS_ENDPOINT}`);
 
       if (!response.data) {
         return undefined;
@@ -29,7 +29,7 @@ export class MapService {
         throw new Error("Not found - endpoint may not exist");
       }
 
-      const parsedData = MapsSchema.parse(response.data);
+      const parsedData = BrawlersSchema.parse(response.data);
 
       return parsedData;
     } catch (error) {
@@ -47,9 +47,9 @@ export class MapService {
     }
   }
 
-  static async getMapById(id: number): Promise<MapDetail | undefined> {
+  static async getBrawlerById(id: number): Promise<BrawlerDetail | undefined> {
     try {
-      const response = await this.api.get<MapDetail>(`${BASE_URL}${MAPS_ENDPOINT}/${id}`);
+      const response = await this.api.get<BrawlerDetail>(`${BRAWLAPI_BASE_URL}${BRAWLERS_ENDPOINT}/${id}`);
       if (!response.data) {
         return undefined;
       }
@@ -62,7 +62,7 @@ export class MapService {
         throw new Error("Not found - endpoint may not exist");
       }
 
-      const parsedData = MapDetailSchema.parse(response.data);
+      const parsedData = BrawlerDetailSchema.parse(response.data);
 
       return parsedData;
     } catch (error) {
