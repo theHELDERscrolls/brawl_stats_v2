@@ -1,1 +1,1 @@
-export * from "./Brawlers";
+export * from "./BrawlerPage";

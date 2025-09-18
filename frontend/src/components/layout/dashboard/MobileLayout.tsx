@@ -1,5 +1,5 @@
 import { BasicTag } from "../../common";
-import { MobileNavigation, NavFooter, NavHeader, navLinks } from "../components";
+import { MobileNavigation, NavFooter, NavHeader, navLinks } from "@/components";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -7,16 +7,26 @@ export const MobileLayout = () => {
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
   const location = useLocation();
+
   useEffect(() => {
     setMenuOpen(false);
   }, [location.pathname]);
+
+  // Bloquear scroll cuando el menú está abierto
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [menuOpen]);
 
   const pathKey = location.pathname === "/" ? "home" : location.pathname.split("/")[1];
   const currentPage = navLinks.find((link) => link.key === pathKey);
 
   return (
     <div className="relative">
-      <header className="relative flex items-center justify-center w-full p-2 bg-neutral-900 text-neutral-100">
+      <header className="fixed flex items-center justify-center w-full p-2 relativetop-0 z-1 bg-neutral-900 text-neutral-100">
         <BasicTag
           iconId="icon-menu"
           className="absolute right-0"
@@ -26,7 +36,7 @@ export const MobileLayout = () => {
       </header>
 
       <aside
-        className={`absolute top-0 left-0 z-10 flex flex-col items-center w-full h-screen gap-4 p-4 transition-transform duration-300 transform bg-neutral-900 ${
+        className={`fixed top-0 left-0 z-50 flex flex-col items-center w-full h-screen gap-4 p-4 transition-transform duration-300 transform bg-neutral-900 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -42,7 +52,7 @@ export const MobileLayout = () => {
         <NavFooter />
       </aside>
 
-      <main className="flex items-center justify-center w-full min-h-screen bg-neutral-800 text-neutral-100">
+      <main className="flex items-start justify-center w-full min-h-screen p-4 pt-15 bg-neutral-800 text-neutral-100">
         <Outlet />
       </main>
     </div>

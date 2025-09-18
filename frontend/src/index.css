@@ -18,4 +18,13 @@
   --text-h5: clamp(1.125rem, 2.5vw, 1.5rem);
   --text-h6: clamp(1rem, 2vw, 1.25rem);
   --text-p: clamp(0.875rem, 1.5vw, 1rem);
+
+  /* Rarity colors */
+  --color-common: #b9eaff;
+  --color-rare: #e1fb2a;
+  --color-super-rare: #5ab3ff;
+  --color-epic: #d850ff;
+  --color-mythic: #fe5e72;
+  --color-legendary: #fff11e;
+  --color-ultra-legendary: #68fd58;
 }

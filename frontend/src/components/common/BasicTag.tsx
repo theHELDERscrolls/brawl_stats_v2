@@ -7,7 +7,7 @@ type BaseProps = {
   font?: FontStyle;
   iconClassName?: string;
   imageClassName?: string;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   size?: number;
   subtitle?: string;
   subtitleClassName?: string;
