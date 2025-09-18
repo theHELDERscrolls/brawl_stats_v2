@@ -1,0 +1,45 @@
+import type { BrawlerDetail } from "@/api";
+
+/**
+ * Determines the appropriate CSS classes for a brawler based on its rarity.
+ *
+ * This utility function maps brawler rarity levels to corresponding CSS class names
+ * that define background colors. It provides different styles for default and hover states,
+ * with a fallback to neutral background if rarity is not recognized.
+ *
+ * @param {BrawlerDetail} brawler - The brawler object containing rarity information
+ * @returns {string} CSS class names corresponding to the brawler's rarity
+ *
+ * @example
+ * // Apply rarity styles to a brawler card
+ * const brawler = { rarity: { name: "Epic" } };
+ * const cardClass = `brawler-card ${rarityStyle(brawler)}`;
+ * // Result: "brawler-card bg-epic lg:bg-neutral-900 lg:hover:bg-epic"
+ *
+ * @example
+ * // Usage in JSX with Tailwind CSS
+ * <div className={`card ${rarityStyle(brawler)}`}>
+ *   <img src={brawler.image} alt={brawler.name} />
+ *   <h3>{brawler.name}</h3>
+ * </div>
+ */
+export const rarityStyle = (brawler: BrawlerDetail): string => {
+  const rarityClass =
+    brawler.rarity.name === "Common"
+      ? "bg-common lg:bg-neutral-900 lg:hover:bg-common"
+      : brawler.rarity.name === "Rare"
+      ? "bg-rare lg:bg-neutral-900 lg:hover:bg-rare"
+      : brawler.rarity.name === "Super Rare"
+      ? "bg-super-rare lg:bg-neutral-900 lg:hover:bg-super-rare"
+      : brawler.rarity.name === "Epic"
+      ? "bg-epic lg:bg-neutral-900 lg:hover:bg-epic"
+      : brawler.rarity.name === "Mythic"
+      ? "bg-mythic lg:bg-neutral-900 lg:hover:bg-mythic"
+      : brawler.rarity.name === "Legendary"
+      ? "bg-legendary lg:bg-neutral-900 lg:hover:bg-legendary"
+      : brawler.rarity.name === "Ultra Legendary"
+      ? "bg-ultra-legendary lg:bg-neutral-900 lg:hover:bg-ultra-legendary"
+      : "bg-neutral-900";
+
+  return rarityClass;
+};
