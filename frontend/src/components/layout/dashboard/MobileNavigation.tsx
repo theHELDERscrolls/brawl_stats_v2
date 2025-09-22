@@ -21,7 +21,7 @@ export const MobileNavigation = () => {
                 ].join(" ")
               }
             >
-              <BasicTag iconId={iconId} title={title} titleSize="text-h4" />
+              <BasicTag iconId={iconId} title={title} titleClassName="text-h4"/>
               <BasicTag iconId="icon-chevron" />
             </NavLink>
           );

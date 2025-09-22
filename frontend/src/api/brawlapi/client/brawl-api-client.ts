@@ -9,7 +9,7 @@ export class BrawlApiAxiosInterceptor {
   constructor() {
     this.axiosInstance = axios.create({
       baseURL: BRAWLAPI_BASE_URL,
-      timeout: 5000,
+      timeout: 10000,
       headers: {
         "Content-Type": "application/json",
       },

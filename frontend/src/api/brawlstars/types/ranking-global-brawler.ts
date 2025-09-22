@@ -7,15 +7,15 @@ import {
   PagingSchema,
 } from "./shared.js";
 
-export const BrawlersItemSchema = BasicRankingItemSchema.extend({
+export const GlobalBrawlerSchema = BasicRankingItemSchema.extend({
   nameColor: NameColorSchema,
   icon: IconSchema,
   club: BasicClubSchema.optional(),
 });
-export type BrawlerItem = z.infer<typeof BrawlersItemSchema>;
+export type GlobalBrawler = z.infer<typeof GlobalBrawlerSchema>;
 
 export const RankingGlobalBrawlersSchema = z.object({
-  items: z.array(BrawlersItemSchema),
+  items: z.array(GlobalBrawlerSchema),
   paging: PagingSchema,
 });
 export type RankingGlobalBrawlers = z.infer<typeof RankingGlobalBrawlersSchema>;

@@ -7,15 +7,15 @@ import {
   PagingSchema,
 } from "./shared.js";
 
-export const ItemSchema = BasicRankingItemSchema.extend({
+export const GlobalPlayerSchema = BasicRankingItemSchema.extend({
   nameColor: NameColorSchema,
   icon: IconSchema,
   club: BasicClubSchema.optional(),
 });
-export type Item = z.infer<typeof ItemSchema>;
+export type GlobalPlayer = z.infer<typeof GlobalPlayerSchema>;
 
 export const RankingGlobalPlayersSchema = z.object({
-  items: z.array(ItemSchema),
+  items: z.array(GlobalPlayerSchema),
   paging: PagingSchema,
 });
 export type RankingGlobalPlayers = z.infer<typeof RankingGlobalPlayersSchema>;

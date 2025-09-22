@@ -44,8 +44,6 @@ export const useBrawlers = () => {
         return;
       }
 
-      setBrawlers(res.list);
-
       const urls = res.list.map(
         (b) =>
           `https://raw.githubusercontent.com/Brawlify/CDN/master/brawlers/portraits/${b.id}.png`
@@ -53,7 +51,9 @@ export const useBrawlers = () => {
 
       await preloadImages(urls);
 
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      setBrawlers(res.list);
     } catch (error) {
       console.error(error);
       alert("Brawlers loading error");

@@ -23,7 +23,7 @@ import type { BrawlerDetail } from "@/api";
  *   <h3>{brawler.name}</h3>
  * </div>
  */
-export const rarityStyle = (brawler: BrawlerDetail): string => {
+export const rarityBackgroundStyle = (brawler: BrawlerDetail): string => {
   const rarityClass =
     brawler.rarity.name === "Common"
       ? "bg-common lg:bg-neutral-900 lg:hover:bg-common"
@@ -40,6 +40,27 @@ export const rarityStyle = (brawler: BrawlerDetail): string => {
       : brawler.rarity.name === "Ultra Legendary"
       ? "bg-ultra-legendary lg:bg-neutral-900 lg:hover:bg-ultra-legendary"
       : "bg-neutral-900";
+
+  return rarityClass;
+};
+
+export const rarityShadowStyle = (brawler: BrawlerDetail): string => {
+  const rarityClass =
+    brawler.rarity.name === "Common"
+      ? "hover:shadow-md hover:shadow-common"
+      : brawler.rarity.name === "Rare"
+      ? "hover:shadow-md hover:shadow-rare"
+      : brawler.rarity.name === "Super Rare"
+      ? "hover:shadow-md hover:shadow-super-rare"
+      : brawler.rarity.name === "Epic"
+      ? "hover:shadow-md hover:shadow-epic"
+      : brawler.rarity.name === "Mythic"
+      ? "hover:shadow-md hover:shadow-mythic"
+      : brawler.rarity.name === "Legendary"
+      ? "hover:shadow-md hover:shadow-legendary"
+      : brawler.rarity.name === "Ultra Legendary"
+      ? "hover:shadow-md hover:shadow-ultra-legendary"
+      : "hover:shadow-md hover:shadow-neutral-900";
 
   return rarityClass;
 };
