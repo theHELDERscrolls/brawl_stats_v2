@@ -1,5 +1,5 @@
 import { BasicTag } from "../common";
-import { rarityStyle } from "@/utils";
+import { rarityBackgroundStyle } from "@/utils";
 import { useNavigate } from "react-router-dom";
 import type { BrawlerDetail } from "@/api";
 
@@ -15,7 +15,7 @@ export const BrawlerCard = ({ brawler, isFav, toggleFavorite }: Props) => {
   return (
     <div
       onClick={() => navigate(`/ranks?brawler=${brawler.id}`)}
-      className={`relative w-34 lg:w-60 xl:w-2xs cursor-pointer overflow-hidden rounded-xl border-3 transition-all ease-in-out group border-neutral-900 lg:border-neutral-100 lg:hover:border-neutral-900 ${rarityStyle(
+      className={`relative w-34 lg:w-60 xl:w-2xs cursor-pointer overflow-hidden rounded-xl border-3 transition-all ease-in-out group border-neutral-900 lg:border-neutral-100 lg:hover:border-neutral-900 ${rarityBackgroundStyle(
         brawler
       )}`}
     >

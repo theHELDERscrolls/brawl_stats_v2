@@ -50,11 +50,14 @@ export class RankingService {
     }
   }
 
-  static async getRankingBrawlers(brawlerId: number): Promise<RankingGlobalBrawlers | undefined> {
+  static async getRankingBrawlers(
+    brawlerId: number | null
+  ): Promise<RankingGlobalBrawlers | undefined> {
     try {
       const response = await this.api.get<RankingGlobalBrawlers>(
         `${BASE_URL}${RANKING_ENDPOINT}/brawlers/${brawlerId}`
       );
+      
       if (!response.data) {
         return undefined;
       }

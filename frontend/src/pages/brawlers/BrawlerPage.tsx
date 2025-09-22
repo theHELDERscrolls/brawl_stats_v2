@@ -5,7 +5,7 @@ import {
   BrawlerSection,
   BrawlerSkeletonGrid,
 } from "@/components/brawlers";
-import { useBrawlerFilters, useBrawlers, useFavorites } from "@/hooks";
+import { useBrawlerFilters, useBrawlers, useFavorites } from "./hooks";
 import { useState } from "react";
 
 export const BrawlersPage = () => {
@@ -25,10 +25,7 @@ export const BrawlersPage = () => {
 
   return (
     <div className="relative flex flex-col w-full h-full gap-8">
-      <PageHeader
-        title="Brawler list"
-        desc="Click in a brawler to check his player's rank."
-      />
+      <PageHeader title="Brawler list" desc="Click in a brawler to check his player's rank." />
 
       <BrawlerFilterBar
         cycleFilterMode={cycleFilterMode}
