@@ -1,4 +1,3 @@
-// ModalContext.ts
 import { createContext } from "react";
 
 interface ModalOptions {
