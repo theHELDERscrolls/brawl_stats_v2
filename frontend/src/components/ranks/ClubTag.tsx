@@ -9,7 +9,6 @@ interface ClubTagProps {
 export const ClubTag = ({ club, showDetails = true }: ClubTagProps) => {
   const { openModal } = useModalContext();
 
-  /* Comprobar en la API oficial lo que devuelve para poner parámetros opcionales */
   const handleClick = () => {
     openModal(<ClubModal clubTag={club.tag.replace("#", "")} />, {
       withBackdrop: true,

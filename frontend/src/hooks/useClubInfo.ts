@@ -1,6 +1,11 @@
 import { ClubService, type Club } from "@/api/brawlstars";
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * Fetches club information for a given club tag.
+ * @param {string|null} clubTag - The club tag to fetch information for.
+ * @returns {{loading: boolean, clubInfo: Club|null}} Object containing loading state and club data.
+ */
 export const useClubInfo = (clubTag: string | null) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [clubInfo, setClubInfo] = useState<Club | null>(null);

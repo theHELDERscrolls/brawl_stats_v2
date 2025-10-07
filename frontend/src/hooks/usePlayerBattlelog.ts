@@ -1,6 +1,11 @@
 import { PlayerService, type PlayerBattlelog } from "@/api/brawlstars";
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * Fetches player battlelog for a given player tag.
+ * @param {string|null} playerTag - The player tag to fetch battlelog for.
+ * @returns {{loading: boolean, playerBattlelog: PlayerBattlelog|null}} Object containing loading state and battlelog data.
+ */
 export const useBattlelog = (playerTag: string | null) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [playerBattlelog, setPlayerBattlelog] = useState<PlayerBattlelog | null>(null);

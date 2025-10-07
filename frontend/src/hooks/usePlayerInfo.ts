@@ -1,6 +1,11 @@
 import { PlayerService, type PlayerInfo } from "@/api";
 import { useCallback, useEffect, useState } from "react";
 
+/**
+ * Fetches player information for a given player tag.
+ * @param {string|null} playerTag - The player tag to fetch information for.
+ * @returns {{loading: boolean, playerInfo: PlayerInfo|null}} Object containing loading state and player data.
+ */
 export const usePlayerInfo = (playerTag: string | null) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [playerInfo, setPlayerInfo] = useState<PlayerInfo | null>(null);

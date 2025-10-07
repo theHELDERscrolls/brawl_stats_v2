@@ -132,6 +132,13 @@ export const getTopBrawlersByTrophies = (playerInfo: PlayerInfo | null): Brawler
   return brawlers.sort((a, b) => b.highestTrophies - a.highestTrophies).slice(0, 5);
 };
 
+/**
+ * Normalizes battle log data by enriching it with game mode information.
+ * @param {PlayerBattlelog | null} playerBattlelog - The player's battle log data.
+ * @param {GameModes | null} gameModes - Available game modes data.
+ * @returns {NormalizedBattle[]} Array of normalized battle objects.
+ */
+
 export const getNormalizeBattlelog = (
   playerBattlelog: PlayerBattlelog | null,
   gameModes: GameModes | null
