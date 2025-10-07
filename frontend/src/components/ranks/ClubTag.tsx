@@ -1,19 +1,23 @@
-import { BasicTag, RankedTagBase } from "@/components";
-
-interface Club {
-  tag: string;
-  rank: number;
-  name: string;
-  badgeId: number;
-  trophies: number;
-}
+import type { GlobalClub } from "@/api";
+import { BasicTag, ClubModal, RankedTagBase, useModalContext } from "@/components";
 
 interface ClubTagProps {
-  club: Club;
-  showDetails?: boolean; // controla si se muestra el bloque extra
+  club: GlobalClub;
+  showDetails?: boolean;
 }
 
 export const ClubTag = ({ club, showDetails = true }: ClubTagProps) => {
+  const { openModal } = useModalContext();
+
+  /* Comprobar en la API oficial lo que devuelve para poner parámetros opcionales */
+  const handleClick = () => {
+    openModal(<ClubModal clubTag={club.tag.replace("#", "")} />, {
+      withBackdrop: true,
+      withCloseButton: true,
+      centered: true,
+    });
+  };
+
   return (
     <RankedTagBase
       rank={club.rank}
@@ -35,6 +39,7 @@ export const ClubTag = ({ club, showDetails = true }: ClubTagProps) => {
           ""
         )
       }
+      onClick={handleClick}
     />
   );
 };

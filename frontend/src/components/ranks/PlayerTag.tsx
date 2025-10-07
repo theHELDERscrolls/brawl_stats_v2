@@ -1,21 +1,15 @@
-import { BasicTag, RankedTagBase } from "@/components";
-
-interface Player {
-  tag: string;
-  rank: number;
-  name: string;
-  trophies: number;
-  icon: { id: number };
-  club?: { name: string };
-}
+import type { GlobalPlayer } from "@/api/brawlstars";
+import { BasicTag, PlayerModal, RankedTagBase, useModalContext } from "@/components";
 
 interface PlayerTagProps {
-  player: Player;
+  player: GlobalPlayer;
   variant?: "default" | "withClub" | "withTrophies";
   showDetails?: boolean;
 }
 
 export const PlayerTag = ({ player, variant = "default", showDetails = true }: PlayerTagProps) => {
+  const { openModal } = useModalContext();
+
   let extra = null;
 
   if (showDetails) {
@@ -49,6 +43,14 @@ export const PlayerTag = ({ player, variant = "default", showDetails = true }: P
     }
   }
 
+  const handleClick = () => {
+    openModal(<PlayerModal playerTag={player.tag.replace("#", "")} />, {
+      withBackdrop: true,
+      withCloseButton: true,
+      centered: true,
+    });
+  };
+
   return (
     <RankedTagBase
       rank={player.rank}
@@ -56,6 +58,7 @@ export const PlayerTag = ({ player, variant = "default", showDetails = true }: P
       title={player.name}
       subtitle={player.tag}
       extra={extra}
+      onClick={handleClick}
     />
   );
 };

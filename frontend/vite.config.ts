@@ -25,4 +25,8 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "src/utils"),
     },
   },
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
+  },
 });

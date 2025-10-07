@@ -7,13 +7,14 @@ import {
 } from "@/components";
 import { rarityShadowStyle, preloadImages } from "@/utils";
 import { useBrawlers } from "../brawlers";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/hooks";
 import { useRankingBrawlers, useRankingClubs, useRankingPlayers } from "./hooks";
 import { useSearchParams } from "react-router-dom";
 
 export const Ranks = () => {
   const hasDetails = useMediaQuery("(min-width: 640px)");
+  const bestPlayersSectionRef = useRef<HTMLDivElement | null>(null);
 
   // Custom hooks que definen el estado de carga y devuelven un contenido concreto.
   const { players, loading: playersLoading } = useRankingPlayers();
@@ -45,6 +46,12 @@ export const Ranks = () => {
 
     loadImages();
   }, [brawlersLoading, brawlers]);
+
+  useEffect(() => {
+    if (brawlerIdParam && imagesReady && bestPlayersSectionRef.current) {
+      bestPlayersSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [brawlerIdParam, imagesReady]);
 
   // Función que recupera el id del brawler para cambiar el param de la URL y realizar una
   // búsqueda de los mejores jugadores por ese brawler automáticamente.
@@ -78,7 +85,10 @@ export const Ranks = () => {
         />
       </div>
 
-      <section className="flex flex-col items-center w-full h-full gap-2 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900">
+      <section
+        ref={bestPlayersSectionRef}
+        className="flex flex-col items-center w-full gap-4 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900"
+      >
         <h3 className="self-start text-h3 text-amber-400 font-brawlstars font-extralight">
           Best players by brawler
         </h3>

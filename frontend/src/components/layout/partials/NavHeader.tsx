@@ -8,7 +8,7 @@ interface Props {
   textSize: TextSizes;
 }
 
-export const NavHeader = ({ size = 32, strokeWidth = 15, textSize }: Props) => {
+export const NavHeader = ({ size = 42, strokeWidth = 15, textSize }: Props) => {
   return (
     <div className="flex items-center justify-start gap-2 cursor-default text-neutral-100">
       <BrawlStatsLogo size={size} strokeWidth={strokeWidth} className="text-cyan-400" />

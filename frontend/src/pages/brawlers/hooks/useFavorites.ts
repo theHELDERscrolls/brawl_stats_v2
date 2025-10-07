@@ -12,26 +12,6 @@ import { useState } from "react";
  * @returns {number[]} return.favorites - Array of favorite brawler IDs.
  * @returns {Function} return.toggleFavorite - Function to toggle a brawler's favorite status.
  * @param {number} return.toggleFavorite.id - The ID of the brawler to toggle.
- *
- * @example
- * // Usage in a React component
- * const MyComponent = () => {
- *   const { favorites, toggleFavorite } = useFavorites();
- *
- *   return (
- *     <div>
- *       {brawlers.map(brawler => (
- *         <button
- *           key={brawler.id}
- *           onClick={() => toggleFavorite(brawler.id)}
- *           className={favorites.includes(brawler.id) ? 'favorite' : ''}
- *         >
- *           {brawler.name}
- *         </button>
- *       ))}
- *     </div>
- *   );
- * };
  */
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<number[]>(() => {
