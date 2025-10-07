@@ -26,7 +26,7 @@ export const BasicTag = ({
   title,
   subtitle,
   fontClassName = "font-sans font-semibold",
-  titleClassName = "text-xs sm:text-p",
+  titleClassName = "text-p",
   subtitleClassName = "text-p text-neutral-400",
   imageClassName = "bg-cover rounded w-10",
   iconClassName = "",
@@ -39,7 +39,7 @@ export const BasicTag = ({
         </svg>
       )}
 
-      {imgSrc && <img src={imgSrc} alt="user-icon" className={imageClassName} />}
+      {imgSrc && <img src={imgSrc} alt="player-icon" className={imageClassName} />}
 
       {(title || subtitle) && (
         <div

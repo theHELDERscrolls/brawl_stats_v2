@@ -19,7 +19,7 @@ export const BrawlerFilterBar = ({
   showFavorites,
 }: Props) => {
   return (
-    <div className="sticky z-20 flex flex-col items-center justify-center w-full gap-4 p-2 shadow-md sm:flex-row md:top-1 top-12 rounded-xl bg-neutral-900 shadow-neutral-900">
+    <div className="sticky z-20 flex flex-col items-center justify-center w-full gap-4 p-2 shadow-md sm:flex-row md:top-1 top-14 rounded-xl bg-neutral-900 shadow-neutral-900">
       <div className="relative w-full">
         <BasicTag
           iconId="icon-search"

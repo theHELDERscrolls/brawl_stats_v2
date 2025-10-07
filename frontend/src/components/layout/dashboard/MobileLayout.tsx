@@ -29,19 +29,20 @@ export const MobileLayout = () => {
       <header className="fixed flex items-center justify-center w-full p-2 relativetop-0 z-1 bg-neutral-900 text-neutral-100">
         <BasicTag
           iconId="icon-menu"
-          className="absolute right-0"
+          className="absolute right-2"
+          size={24}
           onClick={() => setMenuOpen((prev) => !prev)}
         />
-        <p className="font-sans font-semibold text-h5">{currentPage?.title ?? "Home"}</p>
+        <p className="font-sans font-semibold text-h3">{currentPage?.title ?? "Home"}</p>
       </header>
 
       <aside
-        className={`fixed top-0 left-0 z-50 flex flex-col items-center w-full h-screen gap-4 p-4 transition-transform duration-300 transform bg-neutral-900 ${
+        className={`fixed top-0 left-0 z-50 flex flex-col items-center w-full h-full gap-4 p-4 transition-transform duration-300 transform bg-neutral-900 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <header className="flex items-center justify-between w-full">
-          <NavHeader textSize="text-h2" />
+          <NavHeader textSize="text-h1" />
           <BasicTag
             iconId="icon-cross"
             iconClassName="text-neutral-100"
@@ -52,7 +53,7 @@ export const MobileLayout = () => {
         <NavFooter />
       </aside>
 
-      <main className="flex items-start justify-center w-full min-h-screen p-4 pt-15 bg-neutral-800 text-neutral-100">
+      <main className="flex items-start justify-center w-full min-h-screen p-4 pt-16 bg-neutral-800 text-neutral-100">
         <Outlet />
       </main>
     </div>

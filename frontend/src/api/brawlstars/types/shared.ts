@@ -26,6 +26,6 @@ export const BasicRankingItemSchema = z.object({
   tag: z.string(),
   name: z.string(),
   trophies: z.number(),
-  rank: z.number(),
+  rank: z.number().optional(),
 });
 export type BasicRankingItem = z.infer<typeof BasicRankingItemSchema>;

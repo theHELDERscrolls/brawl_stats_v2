@@ -7,23 +7,24 @@ import {
 } from "@/components";
 import { rarityShadowStyle, preloadImages } from "@/utils";
 import { useBrawlers } from "../brawlers";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "@/hooks";
 import { useRankingBrawlers, useRankingClubs, useRankingPlayers } from "./hooks";
 import { useSearchParams } from "react-router-dom";
 
 export const Ranks = () => {
   const hasDetails = useMediaQuery("(min-width: 640px)");
+  const bestPlayersSectionRef = useRef<HTMLDivElement | null>(null);
 
-  // Custom hooks que definen el estado de carga y devuelven un contenido concreto.
+  // Custom hooks that define the loading state and return specific content.
   const { players, loading: playersLoading } = useRankingPlayers();
   const { clubs, loading: clubsLoading } = useRankingClubs();
   const { brawlers, loading: brawlersLoading } = useBrawlers();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  // Lee el param de brawler guardado en la URL
+  // Reads the saved brawler parameter from the URL
   const brawlerIdParam = searchParams.get("brawler");
-  // Convertimos el param a number (por defecto es string) para poder usarlo en useRankingBrawlers()
+  // Converts the param to a number (it's a string by default) so it can be used in useRankingBrawlers()
   const [selectedBrawlerId, setSelectedBrawlerId] = useState<number | null>(
     brawlerIdParam ? Number(brawlerIdParam) : null
   );
@@ -32,12 +33,12 @@ export const Ranks = () => {
 
   const [imagesReady, setImagesReady] = useState(false);
 
-  // Ejecuta cada vez que termina de cargar los brawlers o la lista cambia.
+  // Runs every time the brawlers finish loading or when the list changes.
   useEffect(() => {
     const loadImages = async () => {
       if (!brawlersLoading && brawlers.length > 0) {
         const urls = brawlers.map((b) => b.imageUrl2);
-        // Generamos un objeto Image en memoria y esperamos que todas carguen.
+        // Creates an Image object in memory and waits for all of them to load.
         await preloadImages(urls);
         setImagesReady(true);
       }
@@ -46,8 +47,16 @@ export const Ranks = () => {
     loadImages();
   }, [brawlersLoading, brawlers]);
 
-  // Función que recupera el id del brawler para cambiar el param de la URL y realizar una
-  // búsqueda de los mejores jugadores por ese brawler automáticamente.
+  // When a brawler ID is detected in the URL and images are ready,
+  // this automatically scrolls the user to the “Best players by brawler” section.
+  useEffect(() => {
+    if (brawlerIdParam && imagesReady && bestPlayersSectionRef.current) {
+      bestPlayersSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [brawlerIdParam, imagesReady]);
+
+  // Function that retrieves the brawler id to update the URL param and automatically
+  // search for the best players using that brawler.
   const handleSelectBrawler = (id: number) => {
     setSelectedBrawlerId(id);
     setSearchParams({ brawlerId: id.toString() });
@@ -78,7 +87,10 @@ export const Ranks = () => {
         />
       </div>
 
-      <section className="flex flex-col items-center w-full h-full gap-2 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900">
+      <section
+        ref={bestPlayersSectionRef}
+        className="flex flex-col items-center w-full gap-4 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900"
+      >
         <h3 className="self-start text-h3 text-amber-400 font-brawlstars font-extralight">
           Best players by brawler
         </h3>

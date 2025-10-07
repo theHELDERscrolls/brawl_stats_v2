@@ -1,16 +1,16 @@
 import * as z from "zod";
 import { PagingSchema } from "./shared.js";
 
-export const ModeSchema = z.string();
+export const ModeSchema = z.string().optional();
 export type Mode = z.infer<typeof ModeSchema>;
 
-export const ResultSchema = z.string();
+export const ResultSchema = z.string().optional();
 export type Result = z.infer<typeof ResultSchema>;
 
-export const TypeSchema = z.string();
+export const TypeSchema = z.string().optional();
 export type Type = z.infer<typeof TypeSchema>;
 
-export const MapSchema = z.string();
+export const MapSchema = z.string().nullable();
 export type Map = z.infer<typeof MapSchema>;
 
 export const PlayerBrawlerSchema = z.object({
@@ -21,6 +21,13 @@ export const PlayerBrawlerSchema = z.object({
   trophyChange: z.number().optional(),
 });
 export type PlayerBrawler = z.infer<typeof PlayerBrawlerSchema>;
+
+export const TeamPlayerSchema = z.object({
+  tag: z.string(),
+  name: z.string(),
+  brawler: PlayerBrawlerSchema,
+});
+export type TeamPlayer = z.infer<typeof TeamPlayerSchema>;
 
 export const StarPlayerSchema = z.object({
   tag: z.string(),
@@ -39,7 +46,7 @@ export type Event = z.infer<typeof EventSchema>;
 export const PlayerSchema = z.object({
   tag: z.string(),
   name: z.string(),
-  brawlers: z.array(PlayerBrawlerSchema),
+  brawler: PlayerBrawlerSchema.optional(),
 });
 export type Player = z.infer<typeof PlayerSchema>;
 
@@ -47,10 +54,10 @@ export const BattleSchema = z.object({
   mode: ModeSchema,
   type: TypeSchema,
   result: ResultSchema,
-  duration: z.number(),
+  duration: z.number().optional(),
   trophyChange: z.number().optional(),
-  starPlayer: StarPlayerSchema.optional(),
-  teams: z.array(z.array(StarPlayerSchema)).optional(),
+  starPlayer: StarPlayerSchema.nullable().optional(), 
+  teams: z.array(z.array(TeamPlayerSchema)).optional(), 
   players: z.array(PlayerSchema).optional(),
 });
 export type Battle = z.infer<typeof BattleSchema>;

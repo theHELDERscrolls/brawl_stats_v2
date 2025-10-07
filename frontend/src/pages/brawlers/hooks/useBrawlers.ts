@@ -15,22 +15,6 @@ import { useEffect, useState } from "react";
  * @returns {BrawlerDetail[]} return.brawlers - Array of brawler objects with detailed information.
  *
  * @throws Will display alert messages for API errors or empty responses.
- *
- * @example
- * // Usage in a React component
- * const MyComponent = () => {
- *   const { loading, brawlers } = useBrawlers();
- *
- *   if (loading) return <div>Loading brawlers...</div>;
- *
- *   return (
- *     <div>
- *       {brawlers.map(brawler => (
- *         <BrawlerCard key={brawler.id} brawler={brawler} />
- *       ))}
- *     </div>
- *   );
- * };
  */
 export const useBrawlers = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -51,7 +35,7 @@ export const useBrawlers = () => {
 
       await preloadImages(urls);
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       setBrawlers(res.list);
     } catch (error) {

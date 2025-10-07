@@ -1,7 +1,7 @@
 import * as z from "zod";
 import { IconSchema } from "./shared.js";
 
-export const RoleSchema = z.enum(["member", "president", "senior"]);
+export const RoleSchema = z.string();
 export type Role = z.infer<typeof RoleSchema>;
 
 export const MemberSchema = z.object({

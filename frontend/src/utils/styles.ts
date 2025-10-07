@@ -9,19 +9,6 @@ import type { BrawlerDetail } from "@/api";
  *
  * @param {BrawlerDetail} brawler - The brawler object containing rarity information
  * @returns {string} CSS class names corresponding to the brawler's rarity
- *
- * @example
- * // Apply rarity styles to a brawler card
- * const brawler = { rarity: { name: "Epic" } };
- * const cardClass = `brawler-card ${rarityStyle(brawler)}`;
- * // Result: "brawler-card bg-epic lg:bg-neutral-900 lg:hover:bg-epic"
- *
- * @example
- * // Usage in JSX with Tailwind CSS
- * <div className={`card ${rarityStyle(brawler)}`}>
- *   <img src={brawler.image} alt={brawler.name} />
- *   <h3>{brawler.name}</h3>
- * </div>
  */
 export const rarityBackgroundStyle = (brawler: BrawlerDetail): string => {
   const rarityClass =
@@ -44,6 +31,11 @@ export const rarityBackgroundStyle = (brawler: BrawlerDetail): string => {
   return rarityClass;
 };
 
+/**
+ * Returns the corresponding Tailwind CSS shadow class based on brawler rarity.
+ * @param {BrawlerDetail} brawler - The brawler detail object containing rarity information.
+ * @returns {string} Tailwind CSS class for the rarity-specific shadow style.
+ */
 export const rarityShadowStyle = (brawler: BrawlerDetail): string => {
   const rarityClass =
     brawler.rarity.name === "Common"

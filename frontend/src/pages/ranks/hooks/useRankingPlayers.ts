@@ -8,29 +8,6 @@ import { useEffect, useState } from "react";
  * @returns {Object} An object containing the loading state and players array
  * @property {boolean} loading - Indicates if the data is currently being fetched
  * @property {Array<GlobalPlayer>} players - Array of global player ranking data
- *
- * @example
- * // Example usage in a React component:
- * function PlayerRankings() {
- *   const { loading, players } = useRankingPlayers();
- *
- *   if (loading) {
- *     return <div>Loading player rankings...</div>;
- *   }
- *
- *   return (
- *     <div>
- *       <h2>Top Players</h2>
- *       <ul>
- *         {players.map(player => (
- *           <li key={player.tag}>
- *             {player.name} - {player.trophies} trophies
- *           </li>
- *         ))}
- *       </ul>
- *     </div>
- *   );
- * }
  */
 export const useRankingPlayers = () => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -44,7 +21,6 @@ export const useRankingPlayers = () => {
       }
 
       setPlayers(res.items);
-
       await new Promise((resolve) => setTimeout(resolve, 1000));
     } catch (error) {
       console.error(error);
