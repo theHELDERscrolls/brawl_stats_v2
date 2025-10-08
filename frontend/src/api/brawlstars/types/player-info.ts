@@ -36,7 +36,7 @@ export type Brawler = z.infer<typeof BrawlerSchema>;
 export const PlayerInfoSchema = z.object({
   tag: z.string(),
   name: z.string(),
-  nameColor: z.string(),
+  nameColor: z.string().optional(),
   icon: IconSchema,
   trophies: z.number(),
   highestTrophies: z.number(),
