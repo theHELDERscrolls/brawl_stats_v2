@@ -1,4 +1,5 @@
 import { BasicTag } from "../../common";
+import { useMediaQuery } from "@/hooks";
 import type { BrawlerByTrophies } from "@/utils/types";
 
 interface PlayerTopBrawlersProps {
@@ -6,8 +7,14 @@ interface PlayerTopBrawlersProps {
 }
 
 export const PlayerTopBrawlers = ({ topBrawlers }: PlayerTopBrawlersProps) => {
+  const isSmallScreen = useMediaQuery("(max-width: 425px)");
+
   return (
-    <div className="flex flex-col items-center h-[416px] justify-around p-2 rounded-xl bg-neutral-900/50 w-[316px]">
+    <div
+      className={`flex flex-col items-center h-[416px] justify-around p-2 rounded-xl bg-neutral-900/50 ${
+        isSmallScreen ? "w-[266px]" : "w-[316px]"
+      }`}
+    >
       <p className="text-h5 font-brawlstars font-extralight text-amber-400">Most played brawlers</p>
       <div className="flex flex-col w-full gap-2">
         {topBrawlers.map((b, i) => (
