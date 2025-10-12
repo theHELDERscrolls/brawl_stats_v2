@@ -13,6 +13,7 @@ type BasicTagProps = {
   subtitleClassName?: string;
   imageClassName?: string;
   iconClassName?: string;
+  style?: React.CSSProperties;
 };
 
 export const BasicTag = ({
@@ -30,9 +31,10 @@ export const BasicTag = ({
   subtitleClassName = "text-p text-neutral-400",
   imageClassName = "bg-cover rounded w-10",
   iconClassName = "",
+  style,
 }: BasicTagProps) => {
   return (
-    <div onClick={onClick} className={`${containerClassName} ${className}`}>
+    <div onClick={onClick} className={`${containerClassName} ${className}`} style={style}>
       {iconId && (
         <svg width={size} height={size} aria-hidden="true" className={iconClassName}>
           <use xlinkHref={`spriteSheets.svg#${iconId}`} />
