@@ -1,11 +1,11 @@
 export const MapSkeleton = () => {
   return (
-    <div className="flex flex-col items-center justify-start w-full h-full gap-8 animate-pulse">
+    <div className="flex flex-col items-center justify-start w-full h-full gap-4 animate-pulse">
       {/* Filter */}
-      <div className="flex flex-wrap justify-center w-full gap-2 p-2 h-15 bg-neutral-600 rounded-xl animate-pulse"></div>
+      <div className="flex flex-wrap justify-center w-full h-15 bg-neutral-600 rounded-xl animate-pulse"></div>
 
-      <div className="flex flex-col items-center justify-center w-full gap-4 p-4">
-        {Array.from({ length: 1 }).map((_, i) => (
+      <div className="flex flex-col items-center justify-center w-full">
+        {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="w-full border-2 border-neutral-800 rounded-xl bg-neutral-800/40">
             {/* Header */}
             <div className="w-full rounded-t-lg h-21 bg-neutral-700" />
