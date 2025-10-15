@@ -1,21 +1,16 @@
 import type { PlayerInfo } from "@/api/brawlstars";
 import { BasicTag } from "@/components";
-import type { NormalizedBattle } from "@/utils/types";
-import { useNavigate } from "react-router-dom";
+import type { NormalizedBattle } from "@/utils";
 
 interface PlayerBattlesSectionProps {
   lastBattles: NormalizedBattle[];
   playerInfo: PlayerInfo;
-  closeModal: () => void;
 }
 
 export const PlayerResultsSection = ({
   lastBattles,
   playerInfo,
-  closeModal,
 }: PlayerBattlesSectionProps) => {
-  const navigate = useNavigate();
-
   return (
     <section className="flex flex-col gap-2 py-2 border-t-2 border-neutral-700">
       <h2 className="w-full text-center text-h3 font-brawlstars font-extralight text-amber-400">
@@ -42,12 +37,8 @@ export const PlayerResultsSection = ({
               titleClassName="text-h6 drop-shadow-xs drop-shadow-neutral-950"
               fontClassName="font-brawlstars font-extralight"
               subtitle={btt.map.name}
-              subtitleClassName="text-p drop-shadow-xs drop-shadow-neutral-950 cursor-pointer hover:text-cyan-400 transition-all ease-in-out duration-300"
+              subtitleClassName="text-p drop-shadow-xs drop-shadow-neutral-950"
               className="w-full"
-              onClick={() => {
-                closeModal();
-                navigate(`/maps?mapId=${btt.map.id}`);
-              }}
             />
             {btt.trophyChange && (
               <BasicTag

@@ -1,6 +1,11 @@
 import { BasicTag, PageHeader } from "@/components";
+import { useEffect } from "react";
 
 export const Info = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <section className="flex flex-col w-full h-full gap-8">
       <PageHeader

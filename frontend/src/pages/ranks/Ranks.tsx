@@ -55,6 +55,10 @@ export const Ranks = () => {
     }
   }, [brawlerIdParam, imagesReady]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   // Function that retrieves the brawler id to update the URL param and automatically
   // search for the best players using that brawler.
   const handleSelectBrawler = (id: number) => {

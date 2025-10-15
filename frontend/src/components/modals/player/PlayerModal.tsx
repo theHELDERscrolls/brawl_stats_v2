@@ -1,5 +1,5 @@
-import { BasicTag, Loader, useModalContext } from "../../common";
-import { PlayerInfoSection, PlayerResultsSection, PlayerStatsCharts } from "../player";
+import { BasicTag, Loader } from "../../common";
+import { PlayerInfoSection, PlayerResultsSection } from "../player";
 import { useBattlelog, useGameModes, usePlayerInfo } from "@/hooks";
 import { useBrawlers } from "@/pages/brawlers";
 import {
@@ -8,14 +8,15 @@ import {
   getNormalizeBattlelog,
   getTrophiesProgression,
 } from "@/utils";
+import React from "react";
+
+const PlayerStatsCharts = React.lazy(() => import("../player/PlayerStatsCharts"));
 
 interface PlayerModalProps {
   playerTag: string;
 }
 
 export const PlayerModal = ({ playerTag }: PlayerModalProps) => {
-  const { closeModal } = useModalContext();
-
   const { playerInfo, loading: loadingPlayerInfo } = usePlayerInfo(playerTag);
   const { playerBattlelog, loading: loadingBattlelog } = useBattlelog(playerTag);
 
@@ -57,20 +58,18 @@ export const PlayerModal = ({ playerTag }: PlayerModalProps) => {
           Last {playerBattlelog.items.length.toString()} battles
         </h2>
 
-        <PlayerStatsCharts
-          stats={stats}
-          trophiesProgression={trophiesProgression}
-          mostPlayedGameModes={mostPlayedGameModes}
-          playerInfo={playerInfo}
-        />
+        <React.Suspense fallback={<Loader />}>
+          <PlayerStatsCharts
+            stats={stats}
+            trophiesProgression={trophiesProgression}
+            mostPlayedGameModes={mostPlayedGameModes}
+            playerInfo={playerInfo}
+          />
+        </React.Suspense>
       </section>
 
       {/* Results section */}
-      <PlayerResultsSection
-        lastBattles={lastBattles}
-        playerInfo={playerInfo}
-        closeModal={closeModal}
-      />
+      <PlayerResultsSection lastBattles={lastBattles} playerInfo={playerInfo} />
     </div>
   );
 };

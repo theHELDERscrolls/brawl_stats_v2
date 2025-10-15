@@ -6,7 +6,7 @@ import {
   BrawlerSkeletonGrid,
 } from "@/components/brawlers";
 import { useBrawlerFilters, useBrawlers, useFavorites } from "./hooks";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const BrawlersPage = () => {
   const { loading, brawlers } = useBrawlers();
@@ -22,6 +22,10 @@ export const BrawlersPage = () => {
     filteredBrawlers,
     brawlersByGroup,
   } = useBrawlerFilters(brawlers, favorites, showFavorites);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="relative flex flex-col w-full h-full gap-8">

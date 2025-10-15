@@ -40,7 +40,6 @@ export const useBrawlers = () => {
       setBrawlers(res.list);
     } catch (error) {
       console.error(error);
-      alert("Brawlers loading error");
     } finally {
       setLoading(false);
     }

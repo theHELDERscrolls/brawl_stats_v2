@@ -1,3 +1,4 @@
+export * from "./useBrawlerId"
 export * from "./useClubInfo";
 export * from "./useGameModes";
 export * from "./useMediaQuery";
