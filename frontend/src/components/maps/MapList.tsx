@@ -1,4 +1,4 @@
-import { BasicTag } from "@/components";
+import { BasicTag, MapModal, useModalContext } from "@/components";
 import type { MapDetail } from "@/api/brawlapi";
 import type { Events } from "@/api/brawlapi";
 
@@ -15,6 +15,16 @@ export const MapsList = ({
   activeEvents,
   upcomingEvents,
 }: MapsListProps) => {
+  const { openModal } = useModalContext();
+
+  const handleClick = (id: number) => {
+    openModal(<MapModal mapId={id} />, {
+      withBackdrop: true,
+      withCloseButton: true,
+      centered: true,
+    });
+  };
+
   return (
     <article className="flex flex-wrap items-center justify-center">
       <div className="flex flex-col items-center justify-center w-full gap-4">
@@ -49,6 +59,7 @@ export const MapsList = ({
                   const isUpcoming = upcomingEvents?.some((e) => e.map.id === m.id);
 
                   return (
+                    // Map
                     <div
                       key={m.id}
                       className={`relative flex flex-col items-center justify-around w-full gap-1 p-2 transition-all duration-300 ease-in-out shadow-md cursor-pointer group max-h-50 rounded-xl shadow-neutral-950
@@ -57,8 +68,11 @@ export const MapsList = ({
                             ? "bg-gradient-to-br from-emerald-800 to-emerald-800/10 ring-2 ring-emerald-400"
                             : isUpcoming
                             ? "bg-gradient-to-br from-yellow-800 to-yellow-800/10 ring-2 ring-yellow-400"
+                            : isActive && isUpcoming
+                            ? "bg-gradient-to-br from-emerald-800 to-emerald-800/10 ring-2 ring-emerald-400"
                             : "bg-neutral-600"
                         }`}
+                      onClick={() => handleClick(m.id)}
                     >
                       <img
                         src={m.imageUrl}
@@ -77,7 +91,7 @@ export const MapsList = ({
                           className="absolute right-2 top-2 flex items-center justify-center animate-pulse text-emerald-400"
                         />
                       )}
-                      {isUpcoming && (
+                      {isUpcoming && !isActive && (
                         <BasicTag
                           iconId="icon-clock"
                           size={24}

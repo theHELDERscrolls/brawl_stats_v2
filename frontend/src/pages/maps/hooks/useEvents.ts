@@ -16,7 +16,6 @@ export const useEvents = () => {
 
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setEvents(res);
-      console.log(res);
     } catch (error) {
       console.error(error);
     } finally {

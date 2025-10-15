@@ -14,7 +14,7 @@ import {
   YAxis,
   type PieLabelRenderProps,
 } from "recharts";
-import type { BasicStats, TrophiesProgression, MostPlayedGameModes } from "@/utils/types";
+import type { BasicStats, TrophiesProgression, MostPlayedGameModes } from "@/utils";
 import { useMediaQuery } from "@/hooks";
 import { PlayerTopBrawlers } from "./PlayerTopBrawlers";
 import { getTopBrawlersByTrophies } from "@/utils";
@@ -135,3 +135,5 @@ export const PlayerStatsCharts = ({
     </div>
   );
 };
+
+export default PlayerStatsCharts;

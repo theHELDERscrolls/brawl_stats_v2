@@ -1,6 +1,6 @@
 import { BasicTag } from "../../common";
 import { useMediaQuery } from "@/hooks";
-import type { BrawlerByTrophies } from "@/utils/types";
+import type { BrawlerByTrophies } from "@/utils";
 
 interface PlayerTopBrawlersProps {
   topBrawlers: BrawlerByTrophies[];

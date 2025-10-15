@@ -26,6 +26,13 @@ export const GameModeSchema = BaseGameModeSchema.extend({
 });
 export type GameMode = z.infer<typeof GameModeSchema>;
 
+export const MapStatSchema = z.object({
+  brawler: z.number(),
+  winRate: z.number(),
+  useRate: z.number(),
+});
+export type MapStat = z.infer<typeof MapStatSchema>;
+
 export const MapDetailSchema = z.object({
   id: z.number(),
   new: z.boolean(),
@@ -40,6 +47,8 @@ export const MapDetailSchema = z.object({
   gameMode: GameModeSchema,
   lastActive: z.null(),
   dataUpdated: z.number(),
+  stats: z.array(MapStatSchema).optional(),
+  teamStats: z.array(z.any()).optional(),
 });
 export type MapDetail = z.infer<typeof MapDetailSchema>;
 

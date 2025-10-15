@@ -11,6 +11,16 @@ export const Maps = () => {
   const [selectedMode, setSelectedMode] = useState<string | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const activeEvents = events?.active;
+  const upcomingEvetns = events?.upcoming;
+
+  const abledMaps = maps?.list?.filter((m) => !m.disabled) ?? [];
+  const groupedMaps = groupMapsByGameMode(abledMaps);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   useEffect(() => {
     if (!maps?.list?.length) return;
 
@@ -22,12 +32,6 @@ export const Maps = () => {
 
     loadImages();
   }, [maps]);
-
-  const activeEvents = events?.active;
-  const upcomingEvetns = events?.upcoming;
-
-  const abledMaps = maps?.list?.filter((m) => !m.disabled) ?? [];
-  const groupedMaps = groupMapsByGameMode(abledMaps);
 
   return (
     <section className="relative flex flex-col w-full h-full gap-4">
