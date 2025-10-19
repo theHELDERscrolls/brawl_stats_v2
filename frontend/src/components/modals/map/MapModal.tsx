@@ -11,8 +11,12 @@ export const MapModal = ({ mapId }: MapModalProps) => {
   const { loading: loadingMap, mapStats } = useMapStats(mapId);
   const { brawlers, loading: loadingBrawlers } = useBrawlers();
 
-  if (loadingMap || loadingBrawlers) return <Loader />;
-
+  if (loadingMap || loadingBrawlers)
+    return (
+      <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
+        <Loader />
+      </div>
+    );
   if (!mapStats) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-4 p-4 text-neutral-100 bg-neutral-800 rounded-xl">

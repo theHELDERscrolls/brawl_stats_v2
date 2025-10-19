@@ -10,8 +10,12 @@ export const ClubModal = ({ clubTag }: ClubModalProps) => {
 
   const { clubInfo, loading: loadingClubInfo } = useClubInfo(clubTag);
 
-  if (loadingClubInfo) return <Loader />;
-  
+  if (loadingClubInfo)
+    return (
+      <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
+        <Loader />
+      </div>
+    );
   if (!clubInfo)
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-4 p-4 sm:p-4 text-neutral-100 bg-neutral-800 rounded-xl">

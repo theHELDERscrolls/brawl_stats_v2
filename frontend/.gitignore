@@ -29,6 +29,7 @@ dist/
 dist-ssr/
 build/
 *.local
+stats.html
 
 # ───────────────────────────────
 # TypeScript

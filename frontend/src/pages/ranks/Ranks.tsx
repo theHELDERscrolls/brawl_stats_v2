@@ -8,8 +8,8 @@ import {
 import { rarityShadowStyle, preloadImages } from "@/utils";
 import { useBrawlers } from "../brawlers";
 import { useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "@/hooks";
-import { useRankingBrawlers, useRankingClubs, useRankingPlayers } from "./hooks";
+import { useMediaQuery, useRankingClubs, useRankingPlayers } from "@/hooks";
+import { useRankingBrawlers } from "./hooks";
 import { useSearchParams } from "react-router-dom";
 
 export const Ranks = () => {

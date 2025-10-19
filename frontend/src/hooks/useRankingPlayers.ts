@@ -20,8 +20,8 @@ export const useRankingPlayers = () => {
         return;
       }
 
-      setPlayers(res.items);
       await new Promise((resolve) => setTimeout(resolve, 1000));
+      setPlayers(res.items);
     } catch (error) {
       console.error(error);
     } finally {
