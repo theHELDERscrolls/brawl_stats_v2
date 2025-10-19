@@ -20,7 +20,7 @@ export const RankedTagBase = ({
 }: RankedTagBaseProps) => {
   return (
     <div
-      className="flex items-center justify-start w-full gap-4 px-4 transition-all ease-in-out cursor-pointer min-h-16 rounded-xl bg-neutral-700/50 hover:bg-neutral-700 hover:ring-2 hover:ring-amber-400 group hover:-translate-y-1"
+      className="flex items-center justify-start w-full gap-4 px-4 transition-all ease-in-out shadow-md cursor-pointer shadow-neutral-950 min-h-16 rounded-xl bg-neutral-700/50 hover:bg-neutral-700 hover:ring-2 hover:ring-amber-400 group hover:-translate-y-1"
       onClick={onClick}
     >
       {rank && (

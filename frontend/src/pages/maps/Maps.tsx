@@ -1,7 +1,8 @@
 import { groupMapsByGameMode, preloadImages } from "@/utils";
 import { MapsFilterBar, MapSkeleton, MapsList, MapTagsLegend, PageHeader } from "@/components";
 import { useEffect, useState } from "react";
-import { useEvents, useMaps } from "./hooks";
+import { useEvents } from "@/hooks";
+import { useMaps } from "./hooks";
 
 export const Maps = () => {
   const { loading: loadingMaps, maps } = useMaps();
