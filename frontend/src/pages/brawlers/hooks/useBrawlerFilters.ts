@@ -1,6 +1,6 @@
-import type { BrawlerDetail } from "@/api/brawlapi";
-import { useMemo, useState } from "react";
 import { groupAndSortBrawlers } from "@/utils/brawlers";
+import { useMemo, useState } from "react";
+import type { BrawlerDetail } from "@/api/brawl-stars-api";
 
 type FilterMode = "Name" | "Class" | "Rarity";
 

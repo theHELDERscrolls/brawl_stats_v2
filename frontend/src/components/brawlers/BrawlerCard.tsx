@@ -1,4 +1,4 @@
-import { BasicTag } from "../common";
+import { BasicTag } from "../../components/common";
 import { rarityBackgroundStyle } from "@/utils";
 import { useNavigate } from "react-router-dom";
 import type { BrawlerDetail } from "@/api";
@@ -23,6 +23,7 @@ export const BrawlerCard = ({ brawler, isFav, toggleFavorite }: Props) => {
         src={`https://raw.githubusercontent.com/Brawlify/CDN/master/brawlers/portraits/${brawler.id}.png`}
         alt={`${brawler.name} portrait`}
         className="h-20 transition-all ease-in-out lg:h-25 drop-shadow-md drop-shadow-neutral-900 lg:grayscale lg:group-hover:grayscale-0 lg:group-hover:scale-105"
+        loading="lazy"
       />
       <p className="absolute bottom-0.5 right-1 lg:bottom-2 lg:right-2 px-1 py-0.5 lg:px-2 lg:py-1 border-2 rounded-xl bg-neutral-100 text-neutral-900 font-brawlstars font-extralight text-p lg:text-h6 shadow-xs shadow-neutral-900 transition-all ease-in-out lg:translate-y-full lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
         {brawler.name}

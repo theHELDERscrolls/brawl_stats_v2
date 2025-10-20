@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useEvents } from "@/hooks";
 import { useMaps } from "./hooks";
 
-export const Maps = () => {
+const Maps = () => {
   const { loading: loadingMaps, maps } = useMaps();
   const { events } = useEvents();
 
@@ -66,3 +66,5 @@ export const Maps = () => {
     </section>
   );
 };
+
+export default Maps;

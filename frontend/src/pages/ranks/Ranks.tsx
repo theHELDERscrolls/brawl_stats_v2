@@ -12,7 +12,7 @@ import { useMediaQuery, useRankingClubs, useRankingPlayers } from "@/hooks";
 import { useRankingBrawlers } from "./hooks";
 import { useSearchParams } from "react-router-dom";
 
-export const Ranks = () => {
+const Ranks = () => {
   const hasDetails = useMediaQuery("(min-width: 640px)");
   const bestPlayersSectionRef = useRef<HTMLDivElement | null>(null);
 
@@ -67,13 +67,13 @@ export const Ranks = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full gap-8">
+    <section className="flex flex-col w-full h-full gap-8">
       <PageHeader
         title="Rankings"
         desc="This section displays the worldwide rankings of players, clubs, and individual brawlers."
       />
 
-      <div className="flex flex-col items-center justify-center gap-8 2xl:flex-row ">
+      <article className="flex flex-col items-center justify-center gap-8 2xl:flex-row ">
         <RankingSection
           title="Best Players"
           items={players}
@@ -89,9 +89,9 @@ export const Ranks = () => {
           loading={clubsLoading}
           renderItem={(c) => <ClubTag key={c.tag} club={c} showDetails={hasDetails} />}
         />
-      </div>
+      </article>
 
-      <section
+      <article
         ref={bestPlayersSectionRef}
         className="flex flex-col items-center w-full gap-4 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900"
       >
@@ -114,6 +114,7 @@ export const Ranks = () => {
                   className={`transition-all ease-in-out cursor-pointer h-13 hover:-translate-y-1 border-2 border-neutral-900 ${
                     selectedBrawlerId === b.id ? "ring-3 rounded ring-cyan-400" : ""
                   } ${rarityShadowStyle(b)}`}
+                  loading="lazy"
                   onClick={() => handleSelectBrawler(b.id)}
                 />
               ))
@@ -130,7 +131,9 @@ export const Ranks = () => {
             )}
           />
         )}
-      </section>
-    </div>
+      </article>
+    </section>
   );
 };
+
+export default Ranks;

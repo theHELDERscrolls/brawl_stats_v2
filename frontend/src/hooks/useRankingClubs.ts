@@ -1,4 +1,4 @@
-import { RankingService, type GlobalClub } from "@/api/brawlstars";
+import { RankingService, type GlobalClub } from "@/api/official-api";
 import { useEffect, useState } from "react";
 
 /**

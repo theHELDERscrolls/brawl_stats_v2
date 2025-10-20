@@ -1,14 +1,15 @@
-import { BasicTag, PageHeader } from "@/components";
 import {
+  BasicTag,
   BrawlerCard,
   BrawlerFilterBar,
   BrawlerSection,
   BrawlerSkeletonGrid,
-} from "@/components/brawlers";
+  PageHeader,
+} from "@/components";
 import { useBrawlerFilters, useBrawlers, useFavorites } from "./hooks";
 import { useEffect, useState } from "react";
 
-export const BrawlersPage = () => {
+const BrawlersPage = () => {
   const { loading, brawlers } = useBrawlers();
   const { favorites, toggleFavorite } = useFavorites();
 
@@ -28,7 +29,7 @@ export const BrawlersPage = () => {
   }, []);
 
   return (
-    <div className="relative flex flex-col w-full h-full gap-8">
+    <section className="relative flex flex-col w-full h-full gap-8">
       <PageHeader title="Brawler list" desc="Click in a brawler to check his player's rank." />
 
       <BrawlerFilterBar
@@ -88,6 +89,8 @@ export const BrawlersPage = () => {
           />
         )}
       </main>
-    </div>
+    </section>
   );
 };
+
+export default BrawlersPage;

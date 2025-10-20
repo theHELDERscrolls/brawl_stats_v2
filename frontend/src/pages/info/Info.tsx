@@ -1,7 +1,7 @@
 import { BasicTag, PageHeader } from "@/components";
 import { useEffect } from "react";
 
-export const Info = () => {
+const Info = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -148,3 +148,5 @@ export const Info = () => {
     </section>
   );
 };
+
+export default Info;

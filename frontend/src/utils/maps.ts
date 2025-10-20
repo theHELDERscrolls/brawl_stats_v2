@@ -1,4 +1,4 @@
-import type { MapDetail } from "@/api/brawlapi";
+import type { MapDetail } from "@/api/brawl-stars-api";
 
 export const groupMapsByGameMode = (maps: MapDetail[]) => {
   const groupedMaps: Record<string, typeof maps> = {};

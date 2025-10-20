@@ -1,5 +1,5 @@
-import type { GameModes } from "@/api/brawlapi";
-import type { PlayerBattlelog, PlayerInfo } from "@/api/brawlstars";
+import type { GameModes } from "@/api/brawl-stars-api";
+import type { PlayerBattlelog, PlayerInfo } from "@/api/official-api";
 
 export type BasicStats = {
   victories: number;

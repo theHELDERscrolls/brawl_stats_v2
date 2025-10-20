@@ -13,7 +13,7 @@ import {
   useModalContext,
 } from "@/components";
 
-export const Home = () => {
+const Home = () => {
   const isTablet = useMediaQuery("(min-width: 880px)");
 
   const { openModal } = useModalContext();
@@ -39,7 +39,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full h-full gap-8">
+    <section className="flex flex-col w-full h-full gap-8">
       <PageHeader
         title="Welcome to Brawl Stats!"
         desc="Search for palyer and club information, explore stats and player and club rankings."
@@ -52,6 +52,8 @@ export const Home = () => {
         <TopRankedClubsCard />
         <ActiveMapsCard />
       </div>
-    </div>
+    </section>
   );
 };
+
+export default Home;

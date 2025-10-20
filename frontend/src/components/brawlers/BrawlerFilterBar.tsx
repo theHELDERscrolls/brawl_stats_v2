@@ -1,5 +1,5 @@
 import type { UseBrawlerFiltersReturn } from "@/pages/brawlers/hooks";
-import { BasicTag } from "../common";
+import { BasicTag } from "../../components/common";
 
 interface Props {
   cycleFilterMode: UseBrawlerFiltersReturn["cycleFilterMode"];

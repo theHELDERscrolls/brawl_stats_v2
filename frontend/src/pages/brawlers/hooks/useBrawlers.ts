@@ -1,4 +1,4 @@
-import { BrawlerService, type BrawlerDetail } from "@/api/brawlapi";
+import { BrawlerService, type BrawlerDetail } from "@/api/brawl-stars-api";
 import { preloadImages } from "@/utils";
 import { useEffect, useState } from "react";
 

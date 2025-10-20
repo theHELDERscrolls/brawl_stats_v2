@@ -68,6 +68,7 @@ export const MapModal = ({ mapId }: MapModalProps) => {
           src={mapStats.imageUrl}
           alt={`${mapStats.name} map`}
           className="w-50 drop-shadow-lg drop-shadow-neutral-950"
+          loading="lazy"
         />
       </div>
 
