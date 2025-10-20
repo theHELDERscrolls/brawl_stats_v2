@@ -10,7 +10,7 @@ export const ActiveMapsCard = () => {
 
   if (loading)
     return (
-    <div className="flex flex-col justify-between max-w-3xl gap-4 p-4 border-2 h-[500px] shadow-md shadow-neutral-950 border-emerald-600 break-inside-avoid rounded-xl bg-gradient-to-br from-emerald-900 to-transparent">
+      <div className="flex flex-col justify-between max-w-3xl gap-4 p-4 border-2 h-[500px] shadow-md shadow-neutral-950 border-emerald-600 break-inside-avoid rounded-xl bg-gradient-to-br from-emerald-900 to-transparent">
         <Loader />
       </div>
     );
@@ -41,12 +41,13 @@ export const ActiveMapsCard = () => {
             key={m.map.id}
             className="flex relative flex-col items-center justify-between gap-2 p-2 bg-neutral-700/50 rounded-xl min-w-[160px] max-w-[160px]"
           >
-            <img src={m.map.imageUrl} alt={`${m.map.name} map`} />
+            <img src={m.map.imageUrl} alt={`${m.map.name} map`} loading="lazy" />
             <p className="text-center text-p font-brawlstars font-extralight">{m.map.name}</p>
             <img
               src={m.map.gameMode.imageUrl}
               alt={`${m.map.gameMode.name} mode`}
               className="absolute h-10 top-2 right-2"
+              loading="lazy"
             />
           </div>
         ))}

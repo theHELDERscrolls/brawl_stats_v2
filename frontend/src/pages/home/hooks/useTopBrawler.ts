@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { RankingService, PlayerService } from "@/api/brawlstars";
+import { RankingService, PlayerService } from "@/api/official-api";
 import { getNormalizeBattlelog } from "@/utils";
-import type { GameModes } from "@/api/brawlapi";
+import type { GameModes } from "@/api/brawl-stars-api";
 
 type TopBrawler = {
   id: number;
@@ -25,7 +25,7 @@ export const useTopBrawler = (gameModes: GameModes | null) => {
       if (!ranking?.items) return;
 
       // Get top 10 players from the ranking
-      const topPlayers = ranking.items.slice(0, 10);
+      const topPlayers = ranking.items.slice(0, 5);
 
       // Fetch battle logs for all top players concurrently
       const battlelogs = await Promise.allSettled(

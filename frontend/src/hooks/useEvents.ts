@@ -1,4 +1,4 @@
-import { EventService, type Events } from "@/api/brawlapi";
+import { EventService, type Events } from "@/api/brawl-stars-api";
 import { useEffect, useState } from "react";
 
 /**

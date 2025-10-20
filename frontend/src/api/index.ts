@@ -1,2 +1,2 @@
-export * from "./brawlapi";
-export * from "./brawlstars";
+export * from "./brawl-stars-api";
+export * from "./official-api";

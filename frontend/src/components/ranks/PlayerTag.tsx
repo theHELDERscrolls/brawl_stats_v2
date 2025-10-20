@@ -1,4 +1,4 @@
-import type { GlobalPlayer } from "@/api/brawlstars";
+import type { GlobalPlayer } from "@/api/official-api";
 import { BasicTag, PlayerModal, RankedTagBase, useModalContext } from "@/components";
 
 interface PlayerTagProps {

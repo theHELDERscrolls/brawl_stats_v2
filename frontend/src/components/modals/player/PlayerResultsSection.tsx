@@ -1,4 +1,4 @@
-import type { PlayerInfo } from "@/api/brawlstars";
+import type { PlayerInfo } from "@/api/official-api";
 import { BasicTag } from "@/components";
 import type { NormalizedBattle } from "@/utils";
 

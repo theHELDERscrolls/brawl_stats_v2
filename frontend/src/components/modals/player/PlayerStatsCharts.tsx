@@ -18,7 +18,7 @@ import type { BasicStats, TrophiesProgression, MostPlayedGameModes } from "@/uti
 import { useMediaQuery } from "@/hooks";
 import { PlayerTopBrawlers } from "./PlayerTopBrawlers";
 import { getTopBrawlersByTrophies } from "@/utils";
-import type { PlayerInfo } from "@/api/brawlstars";
+import type { PlayerInfo } from "@/api/official-api";
 
 interface PlayerStatsChartsProps {
   stats: BasicStats;

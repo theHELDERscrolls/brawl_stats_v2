@@ -1,4 +1,4 @@
-import type { BrawlerDetail } from "@/api/brawlapi";
+import type { BrawlerDetail } from "@/api/brawl-stars-api";
 
 type FilterMode = "Name" | "Class" | "Rarity";
 

@@ -1,4 +1,4 @@
-import { BrawlerCard } from "@/components/brawlers";
+import { BrawlerCard } from "@/components";
 import type { BrawlerDetail } from "@/api";
 
 interface BrawlerSectionProps {

@@ -1,4 +1,4 @@
-import { ClubService, type Club } from "@/api/brawlstars";
+import { ClubService, type Club } from "@/api/official-api";
 import { useCallback, useEffect, useState } from "react";
 
 /**

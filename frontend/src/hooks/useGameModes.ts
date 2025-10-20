@@ -1,4 +1,4 @@
-import { GameModeService, type GameModes } from "@/api/brawlapi";
+import { GameModeService, type GameModes } from "@/api/brawl-stars-api";
 import { useEffect, useState } from "react";
 
 /**

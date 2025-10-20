@@ -1,5 +1,5 @@
 import { BasicInfoRow } from "@/components";
-import type { Club } from "@/api/brawlstars";
+import type { Club } from "@/api/official-api";
 
 interface ClubInfoSectionProps {
   clubInfo: Club;

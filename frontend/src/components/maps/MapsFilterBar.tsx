@@ -1,7 +1,7 @@
 import { BasicTag } from "@/components";
 import { useMediaQuery } from "@/hooks";
-import type { MapDetail } from "@/api/brawlapi";
 import type { Dispatch, SetStateAction } from "react";
+import type { MapDetail } from "@/api/brawl-stars-api/types";
 
 interface MapFilterBarProps {
   groupedMaps: Record<string, MapDetail[]>;

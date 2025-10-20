@@ -1,6 +1,6 @@
 import { BasicTag, MapModal, useModalContext } from "@/components";
-import type { MapDetail } from "@/api/brawlapi";
-import type { Events } from "@/api/brawlapi";
+import type { Events, MapDetail } from "@/api/brawl-stars-api/types";
+
 
 interface MapsListProps {
   groupedMaps: Record<string, MapDetail[]>;
@@ -78,6 +78,7 @@ export const MapsList = ({
                         src={m.imageUrl}
                         alt={m.name}
                         className="object-contain w-auto transition-all duration-300 ease-in-out h-28 group-hover:scale-105 group-hover:drop-shadow-md group-hover:drop-shadow-neutral-950"
+                        loading="lazy"
                       />
 
                       <p className="px-2 text-center transition-all duration-300 ease-in-out border-2 rounded-xl bg-neutral-100 font-brawlstars text-p text-neutral-900">
@@ -88,14 +89,14 @@ export const MapsList = ({
                         <BasicTag
                           iconId="icon-check"
                           size={24}
-                          className="absolute right-2 top-2 flex items-center justify-center animate-pulse text-emerald-400"
+                          className="absolute flex items-center justify-center right-2 top-2 animate-pulse text-emerald-400"
                         />
                       )}
                       {isUpcoming && !isActive && (
                         <BasicTag
                           iconId="icon-clock"
                           size={24}
-                          className="absolute right-2 top-2 flex items-center justify-center animate-pulse text-yellow-400"
+                          className="absolute flex items-center justify-center text-yellow-400 right-2 top-2 animate-pulse"
                         />
                       )}
                     </div>

@@ -1,8 +1,8 @@
-import { BasicTag, Loader } from "@/components/common";
+import { BasicTag, Loader } from "../common";
+import { BrawlerCard } from "../brawlers";
 import { useBrawlerId, useGameModes } from "@/hooks";
 import { useNavigate } from "react-router-dom";
 import { useTopBrawler } from "@/pages/home/hooks";
-import { BrawlerCard } from "../brawlers";
 
 export const BrawlerOfTheDayCard = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const BrawlerOfTheDayCard = () => {
 
   if (loadingTopBrawler || loadingBrawlerData)
     return (
-    <div className="flex flex-col items-center justify-between h-[500px] max-w-3xl gap-4 p-4 mb-4 border-2 shadow-md shadow-neutral-950 border-neutral-600 break-inside-avoid rounded-xl bg-neutral-900">
+      <div className="flex flex-col items-center justify-between h-[500px] max-w-3xl gap-4 p-4 mb-4 border-2 shadow-md shadow-neutral-950 border-neutral-600 break-inside-avoid rounded-xl bg-neutral-900">
         <Loader />
       </div>
     );

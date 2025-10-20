@@ -1,4 +1,4 @@
-import { PlayerService, type PlayerBattlelog } from "@/api/brawlstars";
+import { PlayerService, type PlayerBattlelog } from "@/api/official-api";
 import { useCallback, useEffect, useState } from "react";
 
 /**

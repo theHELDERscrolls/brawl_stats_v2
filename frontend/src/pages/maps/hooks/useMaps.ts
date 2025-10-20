@@ -1,4 +1,4 @@
-import { MapService, type Maps } from "@/api/brawlapi";
+import { MapService, type Maps } from "@/api/brawl-stars-api";
 import { useEffect, useState } from "react";
 
 /**

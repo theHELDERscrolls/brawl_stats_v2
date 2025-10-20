@@ -41,7 +41,7 @@ export const BasicTag = ({
         </svg>
       )}
 
-      {imgSrc && <img src={imgSrc} alt="player-icon" className={imageClassName} />}
+      {imgSrc && <img src={imgSrc} alt="player-icon" className={imageClassName} loading="lazy" />}
 
       {(title || subtitle) && (
         <div
