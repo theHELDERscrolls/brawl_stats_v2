@@ -1,4 +1,5 @@
 import { clubsRouter, playersRouter, rankingsRouter } from "./routes/index.js";
+import { rateLimiter } from "./middlewares/rate-limit.js";
 import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -15,9 +16,11 @@ app.use(
     methods: ["GET"],
   })
 );
+
+app.use(rateLimiter);
+
 app.use(express.json());
 
-// 👉 Al iniciar, logueamos la IP pública
 async function logPublicIP() {
   try {
     const res = await axios.get("https://api.ipify.org?format=json");
