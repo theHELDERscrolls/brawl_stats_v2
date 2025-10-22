@@ -29,21 +29,18 @@ app.use(rateLimiter);
 
 app.use(express.json());
 
-async function logPublicIP() {
-  try {
-    const res = await axios.get("https://api.ipify.org?format=json");
-    console.log("🌍 Public IP of this server:", res.data.ip);
-  } catch (err) {
-    console.error("❌ Could not fetch public IP:", err);
-  }
-}
-
-logPublicIP();
 
 app.use("/players", playersRouter);
 app.use("/clubs", clubsRouter);
 app.use("/rankings", rankingsRouter);
 
-app.listen(PORT, () => {
-  console.log(`🚀 Porxy API running at http://localhost:${PORT}`);
+app.listen(PORT, async () => {
+  console.log(`🚀 Proxy API running at http://localhost:${PORT}`);
+
+  try {
+    const res = await axios.get("https://api.ipify.org?format=json");
+    console.log("🌍 Public IP of this Render instance:", res.data.ip);
+  } catch (err) {
+    console.error("❌ Could not fetch public IP:", err);
+  }
 });
