@@ -1,0 +1,52 @@
+interface Props {
+  size: number;
+  className?: string;
+  strokeWidth?: number;
+}
+
+export const BrawlStatsLogo = ({ size, className, strokeWidth = 20 }: Props) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 438 483"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <rect
+        x="203"
+        y="213"
+        width="35"
+        height="95"
+        rx="1"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+      />
+      <rect
+        x="253"
+        y="184"
+        width="35"
+        height="124"
+        rx="1"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+      />
+      <path
+        d="M143.5 386L219.743 477.095C220.139 477.569 220.866 477.574 221.268 477.105L299.238 386.305C299.406 386.109 299.643 385.986 299.9 385.961L431.126 373.134C431.803 373.068 432.218 372.359 431.943 371.736L379.175 251.897C379.063 251.644 379.062 251.355 379.171 251.101L431.995 127.681C432.251 127.082 431.875 126.401 431.231 126.3L299.889 105.561C299.639 105.522 299.413 105.389 299.257 105.19L221.298 5.51999C220.894 5.00409 220.112 5.00894 219.715 5.52981L143.745 105.178C143.588 105.385 143.357 105.522 143.1 105.561L6.79065 126.304C6.13992 126.403 5.76069 127.092 6.02578 127.695L60.3286 251.11C60.4381 251.359 60.4415 251.642 60.338 251.894L11.0123 371.755C10.7571 372.375 11.1725 373.066 11.8398 373.131L143.5 386Z"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+      />
+      <circle cx="219" cy="243" r="115" stroke="currentColor" strokeWidth={strokeWidth} />
+      <rect
+        x="153"
+        y="235"
+        width="35"
+        height="73"
+        rx="1"
+        stroke="currentColor"
+        strokeWidth={strokeWidth}
+      />
+    </svg>
+  );
+};

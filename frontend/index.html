@@ -2,12 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <link rel="icon" type="image/svg+xml" href="/brawl_stats.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Brawl Stats v2</title>
+    <meta
+      name="description"
+      content="Brawl Stats v2: Explore detailed player, club and global rankings for Brawl Stars. View top brawlers, active maps and match statistics."
+    />
+    <meta
+      name="keywords"
+      content="Brawl Stars, Brawl Stats, statistics, rankings, brawlers, maps, clubs, players, Helder Ruiz"
+    />
+    <meta name="author" content="Helder Ruiz" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <!-- TODO: update this URL if your deployed site has a custom domain -->
+    <meta property="og:url" content="https://brawl-stats.vercel.app/" />
+    <meta property="og:title" content="Brawl Stats v2 — Brawl Stars Player, Club & Rankings" />
+    <meta
+      property="og:description"
+      content="Explore player, club and global rankings for Brawl Stars with Brawl Stats v2."
+    />
+    <!-- TODO: update this to match your final domain -->
+    <meta property="og:image" content="https://brawl-stats.vercel.app/brawl_stats.svg" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- TODO: update this URL if your deployed site has a custom domain -->
+    <meta name="twitter:url" content="https://brawl-stats.vercel.app/" />
+    <meta name="twitter:title" content="Brawl Stats v2 — Brawl Stars Player, Club & Rankings" />
+    <meta
+      name="twitter:description"
+      content="Explore player, club and global rankings for Brawl Stars with Brawl Stats v2."
+    />
+    <!-- TODO: update this to match your final domain -->
+    <meta name="twitter:image" content="https://brawl-stats.vercel.app/brawl_stats.svg" />
+
+    <meta name="theme-color" content="#1E1E1E" />
+    <link rel="preload" href="/fonts/lilitaone-regular.ttf" as="font" type="font/ttf" crossorigin />
+
+    <!-- TODO: update this to your final domain -->
+    <link rel="canonical" href="https://brawl-stats.vercel.app/" />
+
+    <meta name="robots" content="index, follow" />
+
     <script type="module" src="src/main.tsx" defer></script>
   </head>
   <body>
     <div id="root"></div>
+    <div id="modal"></div>
   </body>
 </html>

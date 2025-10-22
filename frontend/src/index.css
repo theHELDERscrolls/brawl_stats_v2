@@ -1,1 +1,50 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "BrawlStars";
+  src: url("/fonts/lilitaone-regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-brawlstars: "BrawlStars", sans-serif;
+
+  /* Text sizes */
+  --text-h1: clamp(2rem, 5vw, 3.5rem);
+  --text-h2: clamp(1.75rem, 4vw, 3rem);
+  --text-h3: clamp(1.5rem, 3.5vw, 2.5rem);
+  --text-h4: clamp(1.25rem, 3vw, 2rem);
+  --text-h5: clamp(1.125rem, 2.5vw, 1.5rem);
+  --text-h6: clamp(1rem, 2vw, 1.25rem);
+  --text-p: clamp(0.875rem, 1.5vw, 1rem);
+
+  /* Rarity colors */
+  --color-common: #b9eaff;
+  --color-rare: #e1fb2a;
+  --color-super-rare: #5ab3ff;
+  --color-epic: #d850ff;
+  --color-mythic: #fe5e72;
+  --color-legendary: #fff11e;
+  --color-ultra-legendary: #68fd58;
+}
+
+@layer components {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #555 transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #888;
+  }
+}

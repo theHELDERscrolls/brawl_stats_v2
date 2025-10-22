@@ -3,13 +3,18 @@ import { fileURLToPath } from "url";
 import path, { dirname } from "path";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import { visualizer } from "rollup-plugin-visualizer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    visualizer({ filename: "stats.html", open: true, gzipSize: true, brotliSize: true }),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
@@ -24,5 +29,9 @@ export default defineConfig({
       "@types": path.resolve(__dirname, "src/types"),
       "@utils": path.resolve(__dirname, "src/utils"),
     },
+  },
+  server: {
+    host: "0.0.0.0",
+    port: 5173,
   },
 });
