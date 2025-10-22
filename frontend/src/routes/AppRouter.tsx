@@ -17,7 +17,13 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <ModalProvider>
-        <Suspense fallback={<Loader />}>
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center w-full h-screen bg-neutral-800">
+              <Loader />
+            </div>
+          }
+        >
           <RoutesWithNoFound>
             <Route path="/" element={isTablet ? <DesktopLayout /> : <MobileLayout />}>
               <Route index element={<Home />} />

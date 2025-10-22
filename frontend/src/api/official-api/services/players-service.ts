@@ -16,26 +16,25 @@ export class PlayerService {
   static async getPlayerInfo(playertag: string): Promise<PlayerInfo | undefined> {
     try {
       const response = await this.api.get<PlayerInfo>(`${BASE_URL}${PLAYER_ENDPOINT}/${playertag}`);
-      if (!response.data) {
-        return undefined;
-      }
-
-      if (response.status === 403) {
-        throw new Error("Forbidden - check API permissions or URL parameters");
-      }
-
-      if (response.status === 404) {
-        throw new Error("Not found - endpoint may not exist");
-      }
-
       const parsedData = PlayerInfoSchema.parse(response.data);
-
       return parsedData;
     } catch (error) {
       const axiosError = error as AxiosError<ClientError>;
 
-      if (axiosError.response?.data) {
-        throw axiosError.response.data;
+      if (axiosError.response) {
+        const status = axiosError.response.status;
+
+        if (status === 403) {
+          throw new Error("Forbidden - check API permissions or URL parameters");
+        }
+
+        if (status === 404) {
+          throw new Error("Not found - endpoint may not exist");
+        }
+
+        if (axiosError.response.data) {
+          throw axiosError.response.data;
+        }
       }
 
       if (axiosError.code === "NETWORK_ERROR") {
@@ -51,26 +50,26 @@ export class PlayerService {
       const response = await this.api.get<PlayerBattlelog>(
         `${BASE_URL}${PLAYER_ENDPOINT}/${playertag}/battlelog`
       );
-      if (!response.data) {
-        return undefined;
-      }
-
-      if (response.status === 403) {
-        throw new Error("Forbidden - check API permissions or URL parameters");
-      }
-
-      if (response.status === 404) {
-        throw new Error("Not found - endpoint may not exist");
-      }
-
+      
       const parsedData = PlayerBattlelogSchema.parse(response.data);
-
       return parsedData;
     } catch (error) {
       const axiosError = error as AxiosError<ClientError>;
 
-      if (axiosError.response?.data) {
-        throw axiosError.response.data;
+      if (axiosError.response) {
+        const status = axiosError.response.status;
+
+        if (status === 403) {
+          throw new Error("Forbidden - check API permissions or URL parameters");
+        }
+
+        if (status === 404) {
+          throw new Error("Not found - endpoint may not exist");
+        }
+
+        if (axiosError.response.data) {
+          throw axiosError.response.data;
+        }
       }
 
       if (axiosError.code === "NETWORK_ERROR") {

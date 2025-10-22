@@ -14,13 +14,14 @@ export const MapModal = ({ mapId }: MapModalProps) => {
   if (loadingMap || loadingBrawlers)
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
-        <Loader />
+        <Loader loaderColor="emerald" />
       </div>
     );
+
   if (!mapStats) {
     return (
-      <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-4 p-4 text-neutral-100 bg-neutral-800 rounded-xl">
-        Data not found.
+      <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
+        <Loader loaderColor="red" message="Data not found :(" />
       </div>
     );
   }
@@ -52,7 +53,7 @@ export const MapModal = ({ mapId }: MapModalProps) => {
   const getBrawler = (id: number) => brawlers.find((b) => b.id === id);
 
   return mapStats.id === mapId ? (
-    <div className="flex-col w-full h-full max-w-3xl gap-4 p-4 overflow-y-auto flex text-neutral-100 bg-neutral-800 rounded-xl custom-scrollbar">
+    <div className="flex flex-col w-full h-full max-w-3xl gap-4 p-4 overflow-y-auto text-neutral-100 bg-neutral-800 rounded-xl custom-scrollbar">
       <div className="flex flex-col items-center justify-center gap-4">
         <BasicTag
           imgSrc={mapStats.gameMode.imageUrl}

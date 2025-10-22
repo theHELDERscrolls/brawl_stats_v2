@@ -1,5 +1,6 @@
 import type { BrawlerDetail } from "@/api/brawl-stars-api";
 
+// Define filter modes and group type
 type FilterMode = "Name" | "Class" | "Rarity";
 
 type BrawlerGroup = {
@@ -16,22 +17,9 @@ interface Props {
 }
 
 /**
- * Groups and sorts brawlers based on the specified filter mode, favorites, and search criteria.
- *
- * This utility function processes a list of brawlers by applying search filtering, favorite filtering,
- * and then organizing them according to the selected filter mode. It returns both a flat filtered list
- * and grouped results depending on the filter mode.
- *
- * @param {Object} params - The parameters object.
- * @param {BrawlerDetail[]} params.brawlers - The complete list of brawlers to process.
- * @param {FilterMode} params.filterMode - The grouping mode to apply ("Name", "Class", or "Rarity").
- * @param {number[]} params.favorites - Array of favorite brawler IDs for favorite filtering.
- * @param {boolean} params.showFavorites - Whether to filter results to show only favorite brawlers.
- * @param {string} params.searchQuery - The search string to filter brawlers by name (case-insensitive).
- *
- * @returns {Object} An object containing the processed brawler data.
- * @returns {BrawlerDetail[]} return.filteredBrawlers - Flat sorted list of brawlers (only populated for "Name" mode).
- * @returns {BrawlerGroup[]} return.brawlersByGroup - Array of grouped brawlers (only populated for "Class" and "Rarity" modes).
+ * Groups and sorts brawlers based on filter mode, favorites, and search criteria
+ * @param params - Parameters for filtering and grouping brawlers
+ * @returns Object containing filtered brawlers and grouped results
  */
 export const groupAndSortBrawlers = ({
   brawlers,
@@ -40,12 +28,15 @@ export const groupAndSortBrawlers = ({
   showFavorites,
   searchQuery,
 }: Props) => {
+  // Filter brawlers by search query (case-insensitive)
   let result = brawlers.filter((b) => b.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
+  // Further filter to show only favorites if enabled
   if (showFavorites) {
     result = result.filter((b) => favorites.includes(b.id));
   }
 
+  // Handle Name filter mode (alphabetical sorting)
   if (filterMode === "Name") {
     const sorted = [...result].sort((a, b) => a.name.localeCompare(b.name));
     return {
@@ -54,7 +45,9 @@ export const groupAndSortBrawlers = ({
     };
   }
 
+  // Handle Rarity filter mode (group by rarity)
   if (filterMode === "Rarity") {
+    // Define rarity order for sorting
     const rarityOrder: Record<string, number> = {
       Common: 1,
       Rare: 2,
@@ -67,6 +60,7 @@ export const groupAndSortBrawlers = ({
 
     const groups: BrawlerGroup[] = [];
 
+    // Group brawlers by rarity
     result.forEach((b) => {
       const existing = groups.find((g) => g.groupName === b.rarity.name);
       if (existing) {
@@ -76,12 +70,14 @@ export const groupAndSortBrawlers = ({
       }
     });
 
+    // Sort groups by rarity order
     groups.sort((a, b) => {
       const orderA = rarityOrder[a.groupName] ?? 99;
       const orderB = rarityOrder[b.groupName] ?? 99;
       return orderA - orderB;
     });
 
+    // Sort brawlers alphabetically within each group
     groups.forEach((g) => g.brawlers.sort((a, b) => a.name.localeCompare(b.name)));
 
     return {
@@ -90,7 +86,9 @@ export const groupAndSortBrawlers = ({
     };
   }
 
+  // Handle Class filter mode (group by class)
   if (filterMode === "Class") {
+    // Define class order for sorting
     const classOrder: Record<string, number> = {
       Tank: 1,
       Assassin: 2,
@@ -104,6 +102,7 @@ export const groupAndSortBrawlers = ({
 
     const groups: BrawlerGroup[] = [];
 
+    // Group brawlers by class
     result.forEach((b) => {
       const existing = groups.find((g) => g.groupName === b.class.name);
       if (existing) {
@@ -113,12 +112,14 @@ export const groupAndSortBrawlers = ({
       }
     });
 
+    // Sort groups by class order
     groups.sort((a, b) => {
       const orderA = classOrder[a.groupName] ?? 99;
       const orderB = classOrder[b.groupName] ?? 99;
       return orderA - orderB;
     });
 
+    // Sort brawlers alphabetically within each group
     groups.forEach((g) => g.brawlers.sort((a, b) => a.name.localeCompare(b.name)));
 
     return {
@@ -127,5 +128,6 @@ export const groupAndSortBrawlers = ({
     };
   }
 
+  // Default return for unknown filter modes
   return { filteredBrawlers: result, brawlersByGroup: [] };
 };

@@ -63,7 +63,7 @@ const Ranks = () => {
   // search for the best players using that brawler.
   const handleSelectBrawler = (id: number) => {
     setSelectedBrawlerId(id);
-    setSearchParams({ brawlerId: id.toString() });
+    setSearchParams({ brawler: id.toString() });
   };
 
   return (
@@ -91,10 +91,7 @@ const Ranks = () => {
         />
       </article>
 
-      <article
-        ref={bestPlayersSectionRef}
-        className="flex flex-col items-center w-full gap-4 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900"
-      >
+      <article className="flex flex-col items-center w-full gap-4 p-4 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900">
         <h3 className="self-start text-h3 text-amber-400 font-brawlstars font-extralight">
           Best players by brawler
         </h3>
@@ -123,6 +120,7 @@ const Ranks = () => {
 
         {selectedBrawlerId && (
           <RankingSection
+            ref={bestPlayersSectionRef}
             title="Top Players"
             items={bestPlayers}
             loading={bestPlayersLoading}

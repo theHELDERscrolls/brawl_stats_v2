@@ -1,5 +1,5 @@
 import { useRankingPlayers } from "@/hooks";
-import { BasicTag, Loader } from "../common";
+import { BasicTag, SkeletonBasicTag } from "../common";
 import { PlayerTag } from "../ranks";
 import { useNavigate } from "react-router-dom";
 
@@ -7,24 +7,12 @@ export const TopRankedPlayersCard = () => {
   const { loading, players } = useRankingPlayers();
   const navigate = useNavigate();
 
-  if (loading)
-    return (
-    <div className="flex flex-col items-center justify-between h-full max-w-3xl gap-4 p-4 mb-4 border-2 shadow-md border-cyan-600 break-inside-avoid rounded-xl bg-gradient-to-br from-cyan-900 to-transparent shadow-neutral-950">
-        <Loader />
-      </div>
-    );
-
-  if (!players)
-    return (
-      <div className="flex items-center justify-center font-brawlstars font-extralight h-[500px]">
-        Players not found :(
-      </div>
-    );
+  const showSkeleton = loading || !players || players.length === 0;
 
   return (
     <div className="flex flex-col items-center justify-between h-full max-w-3xl gap-4 p-4 mb-4 border-2 shadow-md border-cyan-600 break-inside-avoid rounded-xl bg-gradient-to-br from-cyan-900 to-transparent shadow-neutral-950">
       <BasicTag
-        iconId="icon-rank"
+        iconId="icon-user"
         iconClassName="text-cyan-400"
         size={50}
         title="Top 5 players"
@@ -34,9 +22,12 @@ export const TopRankedPlayersCard = () => {
         fontClassName="font-brawlstars font-extralight"
         className="w-full"
       />
-      {players.slice(0, 5).map((p) => (
-        <PlayerTag key={p.tag} player={p} />
-      ))}
+
+      {showSkeleton ? (
+        <SkeletonBasicTag count={5} />
+      ) : (
+        players.slice(0, 5).map((p) => <PlayerTag key={p.tag} player={p} showDetails={false} />)
+      )}
 
       <span
         className="flex items-center justify-center px-2 py-1 transition-all duration-300 ease-in-out border-2 cursor-pointer w-fit font-brawlstars border-neutral-900 bg-neutral-100 text-neutral-900 rounded-xl hover:bg-neutral-300"
