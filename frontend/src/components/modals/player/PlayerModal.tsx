@@ -34,13 +34,14 @@ export const PlayerModal = ({ playerTag }: PlayerModalProps) => {
   if (loadingPlayerInfo || loadingBattlelog)
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
-        <Loader />
+        <Loader loaderColor="cyan" />
       </div>
     );
+    
   if (!playerInfo || !playerBattlelog)
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
-        Data not found :(
+        <Loader loaderColor="red" message="Data not found :(" />
       </div>
     );
 

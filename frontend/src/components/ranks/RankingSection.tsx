@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState, useRef, type RefObject } from "react";
 import { SkeletonBasicTag } from "../common";
+import { usePopup } from "@/hooks";
 
 interface RankingSectionProps<T> {
   title: string;
   items: T[];
   loading: boolean;
   renderItem: (item: T) => React.ReactNode;
+  ref?: RefObject<HTMLDivElement | null>;
 }
 
 export const RankingSection = <T,>({
@@ -13,11 +15,27 @@ export const RankingSection = <T,>({
   items,
   loading,
   renderItem,
+  ref,
 }: RankingSectionProps<T>) => {
   const [limit, setLimit] = useState<number>(10);
+  const { popup, showPopup } = usePopup();
+  const prevLoadingRef = useRef<boolean>(loading);
+
+  const showSkeleton = loading || !items || items.length === 0;
+
+  useEffect(() => {
+    if (prevLoadingRef.current && !loading && (!items || items.length === 0)) {
+      showPopup("Data could not be loaded. Please try again later.", "error");
+    }
+    prevLoadingRef.current = loading;
+  }, [items, loading, showPopup]);
 
   return (
-    <section className="relative flex flex-col items-center w-full h-[500px] gap-4 p-2 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900">
+    <section
+      ref={ref}
+      className="relative flex flex-col items-center w-full h-[500px] gap-4 p-2 shadow-xl rounded-xl bg-neutral-900/50 shadow-neutral-900"
+    >
+      {popup}
       <h3 className="w-full text-center border-b-2 border-neutral-700/50 text-h3 text-amber-400 font-brawlstars font-extralight">
         {title}
       </h3>
@@ -40,7 +58,7 @@ export const RankingSection = <T,>({
 
       <div className="w-full overflow-y-auto p-2 custom-scrollbar">
         <div className="flex flex-col items-center justify-start w-full gap-4">
-          {loading ? <SkeletonBasicTag count={10} /> : items.slice(0, limit).map(renderItem)}
+          {showSkeleton ? <SkeletonBasicTag count={10} /> : items.slice(0, limit).map(renderItem)}
         </div>
       </div>
     </section>

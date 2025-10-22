@@ -3,51 +3,52 @@ import { preloadImages } from "@/utils";
 import { useEffect, useState } from "react";
 
 /**
- * Custom React hook that fetches and manages brawlers data with preloading of images.
- *
- * This hook handles the asynchronous fetching of brawlers data from the BrawlerService API,
- * preloads the associated brawler images to improve user experience, and manages loading state.
- * It includes error handling for API failures and provides a simulated minimum loading time
- * of 1 second to ensure a consistent user experience even when data loads quickly.
- *
- * @returns {Object} An object containing the loading state and the fetched brawlers data.
- * @returns {boolean} return.loading - Indicates whether the brawlers data is still being fetched (true) or has completed (false).
- * @returns {BrawlerDetail[]} return.brawlers - Array of brawler objects with detailed information.
- *
- * @throws Will display alert messages for API errors or empty responses.
+ * Custom hook to fetch and manage brawlers data with image preloading
+ * @returns Object containing loading state and brawlers data
  */
 export const useBrawlers = () => {
+  // State for loading status
   const [loading, setLoading] = useState<boolean>(true);
+  // State for storing brawlers data
   const [brawlers, setBrawlers] = useState<BrawlerDetail[]>([]);
 
+  // Function to fetch brawlers data and preload images
   const fetchBrawlers = async () => {
     try {
+      // Fetch all brawlers from service
       const res = await BrawlerService.getAllBrawlers();
       if (!res) {
         alert("There are no brawlers available :(");
         return;
       }
 
+      // Generate URLs for brawler portrait images
       const urls = res.list.map(
         (b) =>
           `https://raw.githubusercontent.com/Brawlify/CDN/master/brawlers/portraits/${b.id}.png`
       );
 
+      // Preload all brawler images for better UX
       await preloadImages(urls);
 
+      // Simulate minimum loading time for consistent experience
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
+      // Update state with fetched brawlers data
       setBrawlers(res.list);
     } catch (error) {
       console.error(error);
     } finally {
+      // Always set loading to false when done
       setLoading(false);
     }
   };
 
+  // Effect to trigger data fetch on component mount
   useEffect(() => {
     fetchBrawlers();
-  }, []);
+  }, []); // Empty dependency array - runs only once
 
+  // Return loading state and brawlers data
   return { loading, brawlers };
 };

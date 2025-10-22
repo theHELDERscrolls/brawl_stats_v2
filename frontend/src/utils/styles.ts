@@ -1,14 +1,9 @@
 import type { BrawlerDetail } from "@/api";
 
 /**
- * Determines the appropriate CSS classes for a brawler based on its rarity.
- *
- * This utility function maps brawler rarity levels to corresponding CSS class names
- * that define background colors. It provides different styles for default and hover states,
- * with a fallback to neutral background if rarity is not recognized.
- *
- * @param {BrawlerDetail} brawler - The brawler object containing rarity information
- * @returns {string} CSS class names corresponding to the brawler's rarity
+ * Determines CSS classes for brawler background based on rarity
+ * @param brawler - The brawler object containing rarity information
+ * @returns CSS class names corresponding to the brawler's rarity
  */
 export const rarityBackgroundStyle = (brawler: BrawlerDetail): string => {
   const rarityClass =
@@ -26,15 +21,15 @@ export const rarityBackgroundStyle = (brawler: BrawlerDetail): string => {
       ? "bg-legendary lg:bg-neutral-900 lg:hover:bg-legendary"
       : brawler.rarity.name === "Ultra Legendary"
       ? "bg-ultra-legendary lg:bg-neutral-900 lg:hover:bg-ultra-legendary"
-      : "bg-neutral-900";
+      : "bg-neutral-900"; // Fallback for unknown rarities
 
   return rarityClass;
 };
 
 /**
- * Returns the corresponding Tailwind CSS shadow class based on brawler rarity.
- * @param {BrawlerDetail} brawler - The brawler detail object containing rarity information.
- * @returns {string} Tailwind CSS class for the rarity-specific shadow style.
+ * Returns Tailwind CSS shadow class based on brawler rarity
+ * @param brawler - The brawler detail object containing rarity information
+ * @returns Tailwind CSS class for rarity-specific shadow style
  */
 export const rarityShadowStyle = (brawler: BrawlerDetail): string => {
   const rarityClass =
@@ -52,7 +47,7 @@ export const rarityShadowStyle = (brawler: BrawlerDetail): string => {
       ? "hover:shadow-md hover:shadow-legendary"
       : brawler.rarity.name === "Ultra Legendary"
       ? "hover:shadow-md hover:shadow-ultra-legendary"
-      : "hover:shadow-md hover:shadow-neutral-900";
+      : "hover:shadow-md hover:shadow-neutral-900"; // Fallback for unknown rarities
 
   return rarityClass;
 };

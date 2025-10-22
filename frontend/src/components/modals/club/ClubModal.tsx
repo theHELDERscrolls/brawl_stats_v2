@@ -13,13 +13,14 @@ export const ClubModal = ({ clubTag }: ClubModalProps) => {
   if (loadingClubInfo)
     return (
       <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
-        <Loader />
+        <Loader loaderColor="amber" />
       </div>
     );
+    
   if (!clubInfo)
     return (
-      <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl gap-4 p-4 sm:p-4 text-neutral-100 bg-neutral-800 rounded-xl">
-        Data not found.
+      <div className="flex flex-col items-center justify-center w-full h-full max-w-3xl text-h4 font-brawlstars font-extralight text-neutral-100 bg-neutral-800 rounded-xl">
+        <Loader loaderColor="red" message="Data not found :(" />
       </div>
     );
 

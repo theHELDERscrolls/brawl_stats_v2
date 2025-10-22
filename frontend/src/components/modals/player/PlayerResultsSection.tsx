@@ -1,16 +1,13 @@
-import type { PlayerInfo } from "@/api/official-api";
 import { BasicTag } from "@/components";
 import type { NormalizedBattle } from "@/utils";
+import type { PlayerInfo } from "@/api/official-api";
 
 interface PlayerBattlesSectionProps {
   lastBattles: NormalizedBattle[];
   playerInfo: PlayerInfo;
 }
 
-export const PlayerResultsSection = ({
-  lastBattles,
-  playerInfo,
-}: PlayerBattlesSectionProps) => {
+export const PlayerResultsSection = ({ lastBattles, playerInfo }: PlayerBattlesSectionProps) => {
   return (
     <section className="flex flex-col gap-2 py-2 border-t-2 border-neutral-700">
       <h2 className="w-full text-center text-h3 font-brawlstars font-extralight text-amber-400">
@@ -56,6 +53,14 @@ export const PlayerResultsSection = ({
                 }`}
               />
             )}
+            {btt.type === "soloRanked" && (
+              <img
+                src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC9QR1hRdXZNeEQ3d2lGa3ZURUM3Mi5wbmcifQ:supercell:bqEfw27fz7e7r8_jO_mhRfIzOCN2H1Xjdl96fiFGBQ4?width=2400"
+                alt="ranked icon"
+                loading="lazy"
+                className="h-10 mr-2 drop-shadow-xs drop-shadow-neutral-950 rotate-25"
+              />
+            )}
           </header>
           <main
             className="flex flex-col items-center justify-center gap-2 p-2 bg-neutral-700/50 rounded-b-xl"
@@ -69,7 +74,7 @@ export const PlayerResultsSection = ({
             {btt.teams?.map((t, i) => (
               <div
                 key={i}
-                className="flex items-center justify-center w-full gap-2 shadow-md shadow-neutral-950 rounded-xl bg-neutral-600/95"
+                className="flex flex-wrap w-full items-center justify-around gap-2 shadow-md shadow-neutral-950 rounded-xl bg-neutral-600/95"
               >
                 {t.map((player, i) => (
                   <BasicTag
@@ -84,13 +89,13 @@ export const PlayerResultsSection = ({
                     titleClassName={`text-xs text-center bg-neutral-900 rounded p-1 ${
                       player.name === playerInfo.name ? "ring-2 ring-cyan-400" : ""
                     }`}
-                    containerClassName="flex flex-col drop-shadow-xs drop-shadow-neutral-950 items-center justify-center w-full min-h-30 gap-2"
+                    containerClassName="flex flex-col drop-shadow-xs drop-shadow-neutral-950 items-center justify-center min-h-30 gap-2"
                   />
                 ))}
               </div>
             ))}
             {btt.players && (
-              <div className="flex flex-wrap items-center justify-center w-full gap-2 p-2 shadow-md rounded-b-xl shadow-neutral-950 rounded-xl bg-neutral-600/95">
+              <div className="flex flex-wrap items-center justify-around w-full gap-2 p-2 shadow-md rounded-b-xl shadow-neutral-950 rounded-xl bg-neutral-600/95">
                 {btt.players.map((p, i) => (
                   <BasicTag
                     key={i}

@@ -20,26 +20,25 @@ export class RankingService {
       const response = await this.api.get<RankingGlobalClubs>(
         `${BASE_URL}${RANKING_ENDPOINT}/clubs`
       );
-      if (!response.data) {
-        return undefined;
-      }
-
-      if (response.status === 403) {
-        throw new Error("Forbidden - check API permissions or URL parameters");
-      }
-
-      if (response.status === 404) {
-        throw new Error("Not found - endpoint may not exist");
-      }
-
       const parsedData = RankingGlobalClubsSchema.parse(response.data);
-
       return parsedData;
     } catch (error) {
       const axiosError = error as AxiosError<ClientError>;
 
-      if (axiosError.response?.data) {
-        throw axiosError.response.data;
+      if (axiosError.response) {
+        const status = axiosError.response.status;
+
+        if (status === 403) {
+          throw new Error("Forbidden - check API permissions or URL parameters");
+        }
+
+        if (status === 404) {
+          throw new Error("Not found - endpoint may not exist");
+        }
+
+        if (axiosError.response.data) {
+          throw axiosError.response.data;
+        }
       }
 
       if (axiosError.code === "NETWORK_ERROR") {
@@ -57,27 +56,25 @@ export class RankingService {
       const response = await this.api.get<RankingGlobalBrawlers>(
         `${BASE_URL}${RANKING_ENDPOINT}/brawlers/${brawlerId}`
       );
-      
-      if (!response.data) {
-        return undefined;
-      }
-
-      if (response.status === 403) {
-        throw new Error("Forbidden - check API permissions or URL parameters");
-      }
-
-      if (response.status === 404) {
-        throw new Error("Not found - endpoint may not exist");
-      }
-
       const parsedData = RankingGlobalBrawlersSchema.parse(response.data);
-
       return parsedData;
     } catch (error) {
       const axiosError = error as AxiosError<ClientError>;
 
-      if (axiosError.response?.data) {
-        throw axiosError.response.data;
+      if (axiosError.response) {
+        const status = axiosError.response.status;
+
+        if (status === 403) {
+          throw new Error("Forbidden - check API permissions or URL parameters");
+        }
+
+        if (status === 404) {
+          throw new Error("Not found - endpoint may not exist");
+        }
+
+        if (axiosError.response.data) {
+          throw axiosError.response.data;
+        }
       }
 
       if (axiosError.code === "NETWORK_ERROR") {
@@ -93,26 +90,26 @@ export class RankingService {
       const response = await this.api.get<RankingGlobalPlayers>(
         `${BASE_URL}${RANKING_ENDPOINT}/players`
       );
-      if (!response.data) {
-        return undefined;
-      }
-
-      if (response.status === 403) {
-        throw new Error("Forbidden - check API permissions or URL parameters");
-      }
-
-      if (response.status === 404) {
-        throw new Error("Not found - endpoint may not exist");
-      }
-
+      
       const parsedData = RankingGlobalPlayersSchema.parse(response.data);
-
       return parsedData;
     } catch (error) {
       const axiosError = error as AxiosError<ClientError>;
 
-      if (axiosError.response?.data) {
-        throw axiosError.response.data;
+      if (axiosError.response) {
+        const status = axiosError.response.status;
+
+        if (status === 403) {
+          throw new Error("Forbidden - check API permissions or URL parameters");
+        }
+
+        if (status === 404) {
+          throw new Error("Not found - endpoint may not exist");
+        }
+
+        if (axiosError.response.data) {
+          throw axiosError.response.data;
+        }
       }
 
       if (axiosError.code === "NETWORK_ERROR") {
