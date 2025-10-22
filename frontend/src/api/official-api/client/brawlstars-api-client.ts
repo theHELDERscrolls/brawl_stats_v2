@@ -2,7 +2,7 @@ import type { AxiosInstance } from "axios";
 import axios from "axios";
 
 // Base URL for local backend server
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 // Axios interceptor for Brawl Stars backend API
 export class BrawlStarsAxiosInterceptor {
