@@ -44,9 +44,9 @@ export const getRankingBrawlers = async (req: Request<{ brawlerId: string }>, re
       return res.status(404).json({ message: "Ranking doesn't found", status: 404 });
     }
 
-    const rankingClubs = RankingGlobalBrawlersSchema.parse(response.data);
+    const rankingBrawlers = RankingGlobalBrawlersSchema.parse(response.data);
 
-    return res.status(200).json(rankingClubs);
+    return res.status(200).json(rankingBrawlers);
   } catch (error: unknown) {
     const axiosError = error as AxiosError<ClientError>;
 
@@ -66,9 +66,9 @@ export const getRankingPlayers = async (_req: Request, res: Response) => {
       return res.status(404).json({ message: "Ranking doesn't found", status: 404 });
     }
 
-    const rankingClubs = RankingGlobalPlayersSchema.parse(response.data);
+    const rankingPlayers = RankingGlobalPlayersSchema.parse(response.data);
 
-    return res.status(200).json(rankingClubs);
+    return res.status(200).json(rankingPlayers);
   } catch (error: unknown) {
     const axiosError = error as AxiosError<ClientError>;
 

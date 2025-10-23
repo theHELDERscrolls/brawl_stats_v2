@@ -10,7 +10,7 @@ const Info = () => {
     <section className="flex flex-col w-full h-full gap-8">
       <PageHeader
         title="Resources & Information"
-        desc="Offical APIs, developer resources and project repositories."
+        desc="Official APIs, developer resources, and project repositories."
       />
       <article>
         <ul className="grid items-center justify-center [grid-template-columns:repeat(auto-fit,minmax(275px,1fr))] sm:[grid-template-columns:repeat(auto-fit,minmax(400px,1fr))] gap-5 p-5">
@@ -128,7 +128,7 @@ const Info = () => {
               <BasicTag
                 imgSrc="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoic3VwZXJjZWxsXC9maWxlXC9pd0NaOG5DcXJVUFJLdk11dU44NS5wbmcifQ:supercell:-0wWcFxLTFlrttqN8dZWy3WwZn9cRHypVqBZkXTHRhc?width=2400"
                 imageClassName="h-13"
-                title="Project respository"
+                title="Project repository"
                 titleClassName="text-h2 sm:text-h4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-orange-500 to-lime-500"
                 subtitle="Explore the full source code of the Brawl Stats v2 website. Contribute, report issues, and collaborate on the project."
                 subtitleClassName="text-h6 text-balance text-neutral-100"

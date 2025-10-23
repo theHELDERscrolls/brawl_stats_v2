@@ -21,7 +21,6 @@ export type Paging = z.infer<typeof PagingSchema>;
 export const NameColorSchema = z.string();
 export type NameColor = z.infer<typeof NameColorSchema>;
 
-// ItemSchema básico para rankings (comparte estructura entre varios archivos)
 export const BasicRankingItemSchema = z.object({
   tag: z.string(),
   name: z.string(),
