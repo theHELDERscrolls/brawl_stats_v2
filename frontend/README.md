@@ -1,69 +1,107 @@
-# React + TypeScript + Vite
+# Brawl Stats v2 - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The **frontend** of _Brawl Stats v2_ is a modern web client built with **React**, **TypeScript**, and **Vite**.  
+It provides a fast and dynamic interface for exploring Brawl Stars player, club, and event statistics through the custom backend proxy API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech stack
 
-## Expanding the ESLint configuration
+- **React 19 + TypeScript** — modern and strongly typed component architecture.
+- **Vite 7** — fast development server and optimized build tool.
+- **React Router v7** — client-side routing and navigation.
+- **React Hook Form + Zod** — form handling and schema validation.
+- **Tailwind CSS 4 + @tailwindcss/vite** — utility-first CSS with modern integration.
+- **Axios** — HTTP client for API requests (via backend proxy).
+- **Recharts** — data visualization and charting library.
+- **ESLint + TypeScript ESLint** — linting and code quality enforcement.
+- **Rollup Plugin Visualizer** — bundle analysis and optimization insights.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+The frontend follows a modular and scalable architecture. Below is an overview of the key directories:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+frontend/
+├── public/              # Static assets (icons, fonts, SVGs)
+├── src/
+│   ├── api/             # API clients and services for backend and official APIs
+│   ├── components/      # Reusable UI components (cards, modals, layouts...)
+│   ├── hooks/           # Custom React hooks for data fetching and logic
+│   ├── pages/           # Page-level components mapped to routes
+│   ├── routes/          # Application routing configuration
+│   ├── utils/           # Helper utilities and shared logic
+│   ├── index.css        # Global styles
+│   ├── main.tsx         # Application entry point
+│   └── App.tsx          # Root application component
+└── vite.config.ts       # Vite configuration file
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+For a detailed explanation of each module, refer to the [docs/frontend/structure.md](../docs/frontend/structure.md) file.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Getting started
+
+### 1. Navigate to the frontend directory
+
+```bash
+cd frontend
 ```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+The app will run by default at [http://localhost:5173](http://localhost:5173)
+
+---
+
+## Build for production
+
+To create an optimized production build:
+
+```bash
+npm run build
+```
+
+The output will be generated in the `dist/` directory.
+
+You can preview the production build locally with:
+
+```bash
+npm run preview
+```
+
+---
+
+## Linting
+
+Run ESLint to check for code style and formatting issues:
+
+```bash
+npm run lint
+```
+
+---
+
+## Contributing
+
+Before contributing, please read the [CONTRIBUTING.md](../CONTRIBUTING.md) file.  
+Pull requests are welcome for UI improvements, bug fixes, or new feature ideas.
+
+---
+
+## License
+
+This project is distributed under the [MIT License](../LICENSE).
