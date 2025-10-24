@@ -12,7 +12,7 @@ export class BrawlStarsAxiosInterceptor {
     // Create axios instance with backend configuration
     this.axiosInstace = axios.create({
       baseURL: BASE_URL,
-      timeout: 20000, // 20 second timeout
+      timeout: 60000, // 60 second timeout
       headers: {
         "Content-Type": "application/json",
       },
