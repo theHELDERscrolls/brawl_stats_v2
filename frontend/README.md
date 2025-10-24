@@ -1,4 +1,4 @@
-# Frontend — Brawl Stats v2
+# Brawl Stats v2 - Frontend
 
 The **frontend** of _Brawl Stats v2_ is a modern web client built with **React**, **TypeScript**, and **Vite**.  
 It provides a fast and dynamic interface for exploring Brawl Stars player, club, and event statistics through the custom backend proxy API.

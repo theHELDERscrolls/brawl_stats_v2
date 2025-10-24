@@ -1,4 +1,4 @@
-# API Proxy Server — Brawl Stats v2
+# Brawl Stats v2 - API Proxy Server
 
 The **API Proxy Server** of _Brawl Stats v2_ is a lightweight backend service built with **Express** and **TypeScript**.  
 It acts as a secure intermediary between the **frontend client** and the **official Brawl Stars API**, handling rate limiting, request validation, and data shaping before returning optimized responses to the frontend.

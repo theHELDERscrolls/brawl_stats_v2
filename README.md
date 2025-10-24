@@ -5,7 +5,36 @@ The project’s goal was to **consume a public API** — in this case, the offic
 
 The application consists of a **custom Node.js proxy API** and a **React + Vite frontend**, designed to provide a smooth and modern user experience while handling all API communication securely on the backend.
 
----
+## Documentation
+
+The full documentation is available in the [`/docs`](./docs) directory.
+
+### Table of Contents
+
+- **Setup & Environment**
+
+  - [Installation](./docs/setup/installation.md)
+  - [Environment Variables](./docs/setup/environment.md)
+  - [Troubleshooting](./docs/setup/troubleshooting.md)
+
+- **Architecture**
+
+  - [Project Architecture](./docs/architecture.md)
+
+- **API Proxy Server**
+
+  - [Controllers](./docs/api/controllers.md)
+  - [Endpoints](./docs/api/endpoints.md)
+  - [Services](./docs/api/services.md)
+  - [Types](./docs/api/types.md)
+  - [Rate Limiting](./docs/api/rate-limiting.md)
+
+- **Frontend**
+  - [Structure](./docs/frontend/structure.md)
+  - [Routing](./docs/frontend/routing.md)
+  - [Components](./docs/frontend/components.md)
+  - [Hooks](./docs/frontend/hooks.md)
+  - [Styling](./docs/frontend/styling.md)
 
 ## Project structure
 
@@ -18,8 +47,6 @@ The application consists of a **custom Node.js proxy API** and a **React + Vite 
 ├── CODE_OF_CONDUCT.md
 └── LICENSE
 ```
-
----
 
 ## Quick start
 
@@ -87,8 +114,6 @@ npm run dev
 
 Runs at: [http://localhost:5173](http://localhost:5173)
 
----
-
 ## Environment variables
 
 | Module             | Variable     | Description                      |
@@ -97,28 +122,20 @@ Runs at: [http://localhost:5173](http://localhost:5173)
 
 > For more setup details, see [docs/setup/environment.md](./docs/setup/environment.md).
 
----
-
 ## Contributing
 
 We welcome pull requests and issue reports!  
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) and follow the commit conventions.
-
----
 
 ## Code of Conduct
 
 This project follows the [Code of Conduct](./CODE_OF_CONDUCT.md).  
 By contributing, you agree to uphold these guidelines.
 
----
-
 ## License
 
 Distributed under the MIT License.  
 See [LICENSE](./LICENSE) for more information.
-
----
 
 ## Support
 
