@@ -10,6 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.set("trust proxy", true);
+
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",")
   : ["http://localhost:5173"];
@@ -28,7 +30,6 @@ app.use(
 app.use(rateLimiter);
 
 app.use(express.json());
-
 
 app.use("/players", playersRouter);
 app.use("/clubs", clubsRouter);
