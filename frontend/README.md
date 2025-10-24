@@ -3,8 +3,6 @@
 The **frontend** of _Brawl Stats v2_ is a modern web client built with **React**, **TypeScript**, and **Vite**.  
 It provides a fast and dynamic interface for exploring Brawl Stars player, club, and event statistics through the custom backend proxy API.
 
----
-
 ## Tech stack
 
 - **React 19 + TypeScript** — modern and strongly typed component architecture.
@@ -16,8 +14,6 @@ It provides a fast and dynamic interface for exploring Brawl Stars player, club,
 - **Recharts** — data visualization and charting library.
 - **ESLint + TypeScript ESLint** — linting and code quality enforcement.
 - **Rollup Plugin Visualizer** — bundle analysis and optimization insights.
-
----
 
 ## Project structure
 
@@ -41,8 +37,6 @@ frontend/
 
 For a detailed explanation of each module, refer to the [docs/frontend/structure.md](../docs/frontend/structure.md) file.
 
----
-
 ## Getting started
 
 ### 1. Navigate to the frontend directory
@@ -65,8 +59,6 @@ npm run dev
 
 The app will run by default at [http://localhost:5173](http://localhost:5173)
 
----
-
 ## Build for production
 
 To create an optimized production build:
@@ -83,8 +75,6 @@ You can preview the production build locally with:
 npm run preview
 ```
 
----
-
 ## Linting
 
 Run ESLint to check for code style and formatting issues:
@@ -93,14 +83,10 @@ Run ESLint to check for code style and formatting issues:
 npm run lint
 ```
 
----
-
 ## Contributing
 
 Before contributing, please read the [CONTRIBUTING.md](../CONTRIBUTING.md) file.  
 Pull requests are welcome for UI improvements, bug fixes, or new feature ideas.
-
----
 
 ## License
 
