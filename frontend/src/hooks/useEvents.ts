@@ -1,6 +1,8 @@
 import { EventService, type Events } from "@/api/brawl-stars-api";
 import { useEffect, useState } from "react";
 
+const SESSION_STORAGE_KEY = "events";
+
 /**
  * Custom hook to fetch and manage game events data
  * @returns Object containing loading state and events data
@@ -14,14 +16,23 @@ export const useEvents = () => {
   // Function to fetch events data
   const fetchEvents = async () => {
     try {
+      // Try to read cached events from sessionStorage
+      const cached = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (cached) {
+        setEvents(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
+
       // Fetch events from service
       const res = await EventService.getEvents();
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Update state with fetched events
       setEvents(res);
+
+      // Persist events in sessionStorage
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,6 +1,8 @@
 import { PlayerService, type PlayerBattlelog } from "@/api/official-api";
 import { useCallback, useEffect, useState } from "react";
 
+const SESSION_STORAGE_PREFIX = "battlelog_";
+
 /**
  * Custom hook to fetch and manage player battlelog by tag
  * @param playerTag - The player tag to fetch battlelog for (null for no fetch)
@@ -18,14 +20,24 @@ export const useBattlelog = (playerTag: string | null) => {
     if (playerTag === null) return;
 
     try {
+      // Try to read cached battlelog from sessionStorage
+      const cacheKey = SESSION_STORAGE_PREFIX + playerTag;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setPlayerBattlelog(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
+
       // Fetch battlelog data from service
       const res = await PlayerService.getPlayerBattlelog(playerTag);
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Update state with fetched battlelog data
       setPlayerBattlelog(res);
+
+      // Persist battlelog in sessionStorage
+      sessionStorage.setItem(cacheKey, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

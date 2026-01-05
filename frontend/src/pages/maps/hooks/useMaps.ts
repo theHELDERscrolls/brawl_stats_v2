@@ -18,8 +18,6 @@ export const useMaps = () => {
       const res = await MapService.getAllMaps();
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Update state with fetched maps data
       setMaps(res);
     } catch (error) {

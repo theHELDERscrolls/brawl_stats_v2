@@ -16,9 +16,11 @@ export const BrawlerSection = ({
 }: BrawlerSectionProps) => {
   if (brawlers.length === 0) return null;
 
+  const titleClass = title.toUpperCase().replace("-", " ");
+
   return (
     <section className="flex flex-col gap-4">
-      <h2 className="font-brawlstars text-h2 text-neutral-100">{title}</h2>
+      <h2 className="font-brawlstars text-h2 text-neutral-100">{titleClass}</h2>
       <div className="flex flex-wrap justify-center gap-4 sm:justify-start">
         {brawlers.map((b) => (
           <BrawlerCard

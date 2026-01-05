@@ -1,7 +1,6 @@
 import { BasicTag, MapModal, useModalContext } from "@/components";
 import type { Events, MapDetail } from "@/api/brawl-stars-api/types";
 
-
 interface MapsListProps {
   groupedMaps: Record<string, MapDetail[]>;
   selectedMode: string | null;
@@ -33,6 +32,10 @@ export const MapsList = ({
 
           const gameMode = maps[0].gameMode;
 
+          const normalizedGameModeName = gameMode.name
+            .toUpperCase()
+            .replaceAll("-", " ");
+
           return (
             <div
               key={gameModeName}
@@ -43,7 +46,7 @@ export const MapsList = ({
               <BasicTag
                 imgSrc={gameMode.imageUrl}
                 imageClassName="h-15"
-                title={gameMode.name}
+                title={normalizedGameModeName}
                 titleClassName="text-h4"
                 subtitle={`Maps in rotation: ${maps.length}`}
                 subtitleClassName="z-0 text-h6 text-neutral-300"
@@ -56,7 +59,11 @@ export const MapsList = ({
               <div className="grid grid-cols-2 gap-4 rounded-b-[10px] bg-neutral-700 p-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {maps.map((m) => {
                   const isActive = activeEvents?.some((e) => e.map.id === m.id);
-                  const isUpcoming = upcomingEvents?.some((e) => e.map.id === m.id);
+                  const isUpcoming = upcomingEvents?.some(
+                    (e) => e.map.id === m.id
+                  );
+
+                  const normalizedMapName = m.name.replaceAll("-", " ");
 
                   return (
                     // Map
@@ -82,7 +89,7 @@ export const MapsList = ({
                       />
 
                       <p className="px-2 text-center transition-all duration-300 ease-in-out border-2 rounded-xl bg-neutral-100 font-brawlstars text-p text-neutral-900">
-                        {m.name}
+                        {normalizedMapName}
                       </p>
 
                       {isActive && (
