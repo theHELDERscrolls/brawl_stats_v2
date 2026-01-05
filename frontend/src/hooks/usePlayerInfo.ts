@@ -1,6 +1,8 @@
 import { PlayerService, type PlayerInfo } from "@/api";
 import { useCallback, useEffect, useState } from "react";
 
+const SESSION_STORAGE_PREFIX = "player_info_";
+
 /**
  * Custom hook to fetch and manage player information by tag
  * @param playerTag - The player tag to fetch information for (null for no fetch)
@@ -18,14 +20,24 @@ export const usePlayerInfo = (playerTag: string | null) => {
     if (playerTag === null) return;
 
     try {
+      // Try to read cached player info from sessionStorage
+      const cacheKey = SESSION_STORAGE_PREFIX + playerTag;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setPlayerInfo(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
+
       // Fetch player data from service
       const res = await PlayerService.getPlayerInfo(playerTag);
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Update state with fetched player data
       setPlayerInfo(res);
+
+      // Persist player info in sessionStorage
+      sessionStorage.setItem(cacheKey, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

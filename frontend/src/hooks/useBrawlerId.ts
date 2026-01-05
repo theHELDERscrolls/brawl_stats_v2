@@ -1,6 +1,8 @@
 import { BrawlerService, type BrawlerDetail } from "@/api";
 import { useCallback, useEffect, useState } from "react";
 
+const SESSION_STORAGE_PREFIX = "brawler_";
+
 /**
  * Custom hook to fetch and manage brawler data by ID
  * @param brawlerId - The ID of the brawler to fetch (null for no fetch)
@@ -18,14 +20,24 @@ export const useBrawlerId = (brawlerId: number | null) => {
     if (brawlerId === null) return;
 
     try {
+      // Try to read cached brawler data from sessionStorage
+      const cacheKey = SESSION_STORAGE_PREFIX + brawlerId;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setBrawlerData(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
+
       // Fetch brawler data from service
       const res = await BrawlerService.getBrawlerById(brawlerId);
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Update state with fetched data
       setBrawlerData(res);
+
+      // Persist brawler data in sessionStorage
+      sessionStorage.setItem(cacheKey, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

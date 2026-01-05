@@ -1,6 +1,8 @@
 import { GameModeService, type GameModes } from "@/api/brawl-stars-api";
 import { useEffect, useState } from "react";
 
+const SESSION_STORAGE_KEY = "game_modes";
+
 /**
  * Custom hook to fetch and manage game modes data
  * @returns Object containing loading state and game modes data
@@ -14,12 +16,22 @@ export const useGameModes = () => {
   // Function to fetch game modes data
   const fetchGameModes = async () => {
     try {
+      // Try to read cached game modes from sessionStorage
+      const cached = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (cached) {
+        setGameModes(JSON.parse(cached));
+        return;
+      }
+
       // Fetch game modes from service
       const res = await GameModeService.getAllGameModes();
       if (!res) return;
 
       // Update state with fetched game modes
       setGameModes(res);
+
+      // Persist game modes in sessionStorage to avoid refetching
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

@@ -1,6 +1,8 @@
 import { MapService, type MapDetail } from "@/api";
 import { useCallback, useEffect, useState } from "react";
 
+const SESSION_STORAGE_PREFIX = "map_stats_";
+
 /**
  * Custom hook to fetch and manage detailed map statistics by ID
  * @param mapId - The ID of the map to fetch statistics for (null for no fetch)
@@ -18,14 +20,26 @@ export const useMapStats = (mapId: number | null) => {
     if (mapId === null) return;
 
     try {
+      // Try to read cached map stats from sessionStorage
+      const cacheKey = SESSION_STORAGE_PREFIX + mapId;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setMapStats(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
+
       // Fetch map data from service
       const res = await MapService.getMapById(mapId);
       if (!res) return;
 
       // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => (resolve, 1000));
       // Update state with fetched map statistics
       setMapStats(res);
+
+      // Persist map stats in sessionStorage
+      sessionStorage.setItem(cacheKey, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

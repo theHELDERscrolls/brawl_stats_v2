@@ -2,8 +2,10 @@ import { BrawlerService, type BrawlerDetail } from "@/api/brawl-stars-api";
 import { preloadImages } from "@/utils";
 import { useEffect, useState } from "react";
 
+const SESSION_STORAGE_KEY = "brawlers_data";
+
 /**
- * Custom hook to fetch and manage brawlers data with image preloading
+ * Custom hook to fetch and manage brawlers data with image preloading and sessionStorage persistence
  * @returns Object containing loading state and brawlers data
  */
 export const useBrawlers = () => {
@@ -15,7 +17,23 @@ export const useBrawlers = () => {
   // Function to fetch brawlers data and preload images
   const fetchBrawlers = async () => {
     try {
-      // Fetch all brawlers from service
+      // First, try to get cached brawlers from sessionStorage
+      const cached = sessionStorage.getItem(SESSION_STORAGE_KEY);
+      if (cached) {
+        const parsed: BrawlerDetail[] = JSON.parse(cached);
+        setBrawlers(parsed);
+        setLoading(false);
+
+        // Preload images even if we have cached data
+        const urls = parsed.map(
+          (b) =>
+            `https://raw.githubusercontent.com/Brawlify/CDN/master/brawlers/portraits/${b.id}.png`
+        );
+        preloadImages(urls); // preload asynchronously, do not block render
+        return;
+      }
+
+      // If no cached data, fetch from the API
       const res = await BrawlerService.getAllBrawlers();
       if (!res) {
         alert("There are no brawlers available :(");
@@ -27,15 +45,14 @@ export const useBrawlers = () => {
         (b) =>
           `https://raw.githubusercontent.com/Brawlify/CDN/master/brawlers/portraits/${b.id}.png`
       );
-
       // Preload all brawler images for better UX
       await preloadImages(urls);
 
-      // Simulate minimum loading time for consistent experience
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
       // Update state with fetched brawlers data
       setBrawlers(res.list);
+
+      // Store fetched brawlers in sessionStorage for persistence
+      sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(res.list));
     } catch (error) {
       console.error(error);
     } finally {

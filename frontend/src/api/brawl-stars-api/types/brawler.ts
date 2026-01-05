@@ -1,13 +1,13 @@
 import * as z from "zod";
 
 export const ClassNameSchema = z.enum([
-  "Artillery",
-  "Assassin",
-  "Controller",
-  "Damage Dealer",
-  "Marksman",
-  "Support",
-  "Tank",
+  "ARTILLERY",
+  "ASSASSIN",
+  "CONTROLLER",
+  "DAMAGE-DEALER",
+  "MARKSMAN",
+  "SUPPORT",
+  "TANK",
   "Unknown",
 ]);
 export type ClassName = z.infer<typeof ClassNameSchema>;
