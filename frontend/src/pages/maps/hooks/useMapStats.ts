@@ -33,8 +33,6 @@ export const useMapStats = (mapId: number | null) => {
       const res = await MapService.getMapById(mapId);
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => (resolve, 1000));
       // Update state with fetched map statistics
       setMapStats(res);
 
