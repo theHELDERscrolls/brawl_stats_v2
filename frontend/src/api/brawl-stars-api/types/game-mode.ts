@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 export const GameDetailSchema = z.object({
-  id: z.number().optional(),
+  id: z.number(),
   scId: z.number(),
   name: z.string(),
   hash: z.string(),
@@ -19,8 +19,8 @@ export const GameDetailSchema = z.object({
   link: z.string(),
   imageUrl: z.string(),
   imageUrl2: z.string(),
-  lastActive: z.null(),
-  TID: z.string(),
+  lastActive: z.string().nullable(),
+  TID: z.string().nullable(),
 });
 export type GameDetail = z.infer<typeof GameDetailSchema>;
 

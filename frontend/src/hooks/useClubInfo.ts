@@ -1,6 +1,8 @@
 import { ClubService, type Club } from "@/api/official-api";
 import { useCallback, useEffect, useState } from "react";
 
+const SESSION_STORAGE_PREFIX = "club_info_";
+
 /**
  * Custom hook to fetch and manage club information by tag
  * @param clubTag - The club tag to fetch information for (null for no fetch)
@@ -18,14 +20,24 @@ export const useClubInfo = (clubTag: string | null) => {
     if (clubTag === null) return;
 
     try {
+      // Try to read cached club info from sessionStorage
+      const cacheKey = SESSION_STORAGE_PREFIX + clubTag;
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        setClubInfo(JSON.parse(cached));
+        setLoading(false);
+        return;
+      }
+
       // Fetch club data from service
       const res = await ClubService.getClubInfo(clubTag);
       if (!res) return;
 
-      // Simulate loading delay for better UX
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Update state with fetched club data
       setClubInfo(res);
+
+      // Persist club info in sessionStorage
+      sessionStorage.setItem(cacheKey, JSON.stringify(res));
     } catch (error) {
       console.error(error);
     } finally {

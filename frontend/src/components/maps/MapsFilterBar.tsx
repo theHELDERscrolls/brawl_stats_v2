@@ -31,7 +31,9 @@ export const MapsFilterBar = ({
 
       <div
         className={`flex flex-wrap items-center justify-center gap-2 overflow-hidden rounded-xl py-2 transition-all duration-500 ease-in-out ${
-          isOpen ? "max-h-screen opacity-100" : "pointer-events-none max-h-0 opacity-0"
+          isOpen
+            ? "max-h-screen opacity-100"
+            : "pointer-events-none max-h-0 opacity-0"
         }`}
       >
         <BasicTag
@@ -55,16 +57,23 @@ export const MapsFilterBar = ({
         />
         {Object.entries(groupedMaps).map(([gameModeName, maps]) => {
           const gameMode = maps[0].gameMode;
+
+          const normalizedGameModeName = gameMode.name
+            .toUpperCase()
+            .replaceAll("-", " ");
+
           return (
             <BasicTag
               key={gameModeName}
               imgSrc={gameMode.imageUrl}
               imageClassName="max-h-8"
-              title={isTablet ? gameMode.name : undefined}
-              titleClassName="text-center text-xs"
+              title={isTablet ? normalizedGameModeName : undefined}
+              titleClassName="text-center text-xs line-clamp-2"
               fontClassName="font-brawlstars font-extralight"
               className={`rounded-xl bg-neutral-800 text-shadow-xs text-shadow-neutral-950 ring-2 transition-all duration-300 ease-in-out hover:bg-neutral-700 cursor-pointer ${
-                selectedMode === gameModeName ? "ring-cyan-400" : "ring-neutral-500"
+                selectedMode === gameModeName
+                  ? "ring-cyan-400"
+                  : "ring-neutral-500"
               }`}
               containerClassName="flex h-15 w-15 flex-col items-center justify-center gap-1 p-4 p-1 md:h-20 md:w-20"
               onClick={() => {
